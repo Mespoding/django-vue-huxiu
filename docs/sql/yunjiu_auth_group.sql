@@ -1,0 +1,1 @@
+INSERT INTO yunjiu.auth_group (name) VALUES ('yunjiu-admin');

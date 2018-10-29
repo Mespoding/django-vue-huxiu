@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>
+        {% block title %}
+            云酒网
+        {% endblock %}
+    </title>
+    {% include 'metas.html' %}
+    {% block meta %}
+
+    {% endblock %}
+
+    {% include 'head.html' %}
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+{% csrf_token %}
+
+{% include 'search_box.html' %}
+{% include 'header.html' %}
+
+{% block body %}
+    {% block container %}
+
+    {% endblock %}
+
+    {% include 'footer.html' %}
+
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.detection.js"></script><!--埋点统计-->
+    <script type="text/javascript" src="/static/js/sea.js"></script>
+
+    <script>
+        // seajs的用法: http://yslove.net/seajs/
+        var base_static_url = $('meta[name="base-static-url"]').attr('content');
+        seajs.config({
+            base: (!!base_static_url) ? base_static_url + '/static/js/' : '/static/js/',
+            comboSyntax: ['??', ','],  // ??path/to/sea.js,path/to/seajs-xxx.js
+            alias: {  // 设置别名，方便调用
+                'jquery': 'jquery-1.11.1.min',
+                'bootstrap': 'bootstrap.min',
+                'sea_combo_flush': 'sea_combo_flush.js',
+                'cookie': 'jquery.cookie',
+                's_css': 'seajs_css'
+            },
+            'map': [
+                [/^(.*\.(?:css|js))(.*)$/i, '$1?201701041731']  // 该配置可对模块路径进行映射修改，可用于路径转换、在线调试
+            ],
+            charset: 'utf-8'
+        });
+        seajs.use(['init']);  // 加载一个模块
+    </script>
+
+    <script type="text/javascript" src="/static/js/seajs_css.js"></script>
+
+    <script src="/static/js/wxLogin.js"></script>
+
+    <!--[if lt IE 10]>
+<script type="text/javascript">
+
+    if( !('placeholder' in document.createElement('input')) ){
+        $('input[placeholder],textarea[placeholder]').each(function(){
+            var that = $(this),
+                text= that.attr('placeholder');
+            if(that.val()===""){
+                that.val(text).addClass('placeholder');
+            }
+            that.focus(function(){
+                if(that.val()===text){
+                    that.val("").removeClass('placeholder');
+                }
+            })
+                .blur(function(){
+                    if(that.val()===""){
+                        that.val(text).addClass('placeholder');
+                    }
+                })
+                .closest('form').submit(function(){
+                    if(that.val() === text){
+                        that.val('');
+                    }
+                });
+        });
+    }
+
+    function hasClass(element, className) {
+        var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');
+        return element.className.match(reg);
+    }
+    function addClass(element, className) {
+        if (!this.hasClass(element, className))
+        {
+            element.className += " "+className;
+        }
+    }
+    function removeClass(element, className) {
+        if (hasClass(element, className)) {
+            var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');
+            element.className = element.className.replace(reg,' ');
+        }
+    }
+    var search = document.getElementById('search-box');
+    addClass(search, 'search-box-last');
+    addClass(search, 'hide');
+</script>
+<![endif]-->
+
+    {% block script %}
+
+    {% endblock %}
+{% endblock %}
+
+</body>
+</html>

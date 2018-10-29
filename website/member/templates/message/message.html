@@ -1,0 +1,37 @@
+{% extends 'message/_message.html' %}
+
+{% block message-box %}
+    <div class="message-box">
+        <ul>
+            {% for object in object_list %}
+                <li class="system_msg" type="system_msg">
+                    <div class="message-title">
+                        <div class="system-notice">
+                            <a href="{% url 'article:details' object.article_id %}" target="_blank">
+                                <div class="title2 f1">{{ object.creator.display_name }}在文章评论中@了你</div>
+                            </a>
+                            <div class="quote">
+                                <blockquote>
+                                    回复 @{{ user.display_name }} ：{{ object.content }}
+                                </blockquote>
+                            </div>
+                            <div class="system-link">
+                                来自文章： <a href="{% url 'article:details' object.article_id %}" target="_blank">
+                                {{ object.article.title }} </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-time">
+                        {{ object.created_at }}
+                    </div>
+                    <!--                    <div class="pull-right message-delete hide"><i class="icon icon-delete js-pc-del-user"></i></div>-->
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
+
+{% block no-content %}
+    您还没有评论回复
+{% endblock %}

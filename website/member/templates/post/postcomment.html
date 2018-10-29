@@ -1,0 +1,32 @@
+{% extends 'post/_post.html' %}
+
+{% block message-box %}
+    <div class="message-box">
+        <ul>
+            {% for object in object_list %}
+                <li type="recomment" cid="{{ object.parent_id }}">
+                    <blockquote>
+                        {{ object.parent.content }}
+                    </blockquote>
+                    <div class="message-title"><span class="me-dp">我的点评：</span><a
+{#                            href="/comment/172876.html?pid=604152&amp;is_postcomment=1&amp;f=postcomment_details#g_pid604152"#}
+                            href="{% url 'article:details' object.article.id %}"
+                            target="_blank">回复 @{{ object.at.display_name }} ：{{ object.content }}</a></div>
+                    <div class="message-time">
+                        {{ object.created_at }}<span class="message-article">
+                        来自文章：<a href="{% url 'article:details' object.article.id %}" target="_blank">
+                        {{ object.article.title }}</a></span>
+                    </div>
+                    {% if is_me %}
+                        <div class="pull-right message-delete hide"><i class="icon icon-delete js-pc-del-user"></i>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block no-content %}
+    您还没有点评
+{% endblock %}

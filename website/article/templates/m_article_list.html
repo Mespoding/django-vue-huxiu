@@ -1,0 +1,348 @@
+{% load article_tags %}
+
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://m.huxiu.com/channel/22.html -->
+<html style="font-size: 34.1333px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{{ category.title }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="云酒头条">
+    <meta name="keywords" content="科技资讯,商业评论,明星公司,动态,宏观,趋势,创业,精选,有料,干货,有用,细节,内幕">
+    <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在虎嗅，不错过互联网的每个重要时刻。">
+    <link href="/static/m_article_list_files/m.css" rel="stylesheet" media="screen">
+    <link href="/static/m_article_list_files/topic.css" rel="stylesheet" media="screen">
+    <link href="/static/m_article_list_files/activity.css" rel="stylesheet" media="screen">
+    <link href="/static/m_article_list_files/vip.css" rel="stylesheet" media="screen">
+    <link href="/static/m_article_list_files/ground.css" rel="stylesheet" media="screen">
+    <link href="/static/m_article_list_files/login.css" rel="stylesheet" media="screen">
+
+    <script src="/static/m_article_list_files/push.js"></script>
+    <script async="" src="/static/m_article_list_files/sensorsdata.sdk.js"></script>
+    <script async="" src="/static/m_article_list_files/analytics.js"></script>
+    <script src="/static/m_article_list_files/hm.js"></script>
+    <script>
+        var uid = '1380515';
+        var is_vip = '';
+        var huxiu_hash_code = "6a0be2d313f822c3815df06606b907bb";
+        var aid = 0;
+
+        var newsId = 0;
+
+        var itemId = '22';
+        var signAna = '375081dd5ccf5bb5ababce37729ffdb8cf38642a';
+        var signTime = '1488297339';
+        var productId = '20';
+        var channel = 'huxiu';
+        var relatedArticle = '';
+        var url = window.location.href;
+        var str1 = new RegExp('rec=man');
+        var str2 = new RegExp('rec=sim');
+        if (str1.test(url)) {
+            relatedArticle = 'manual';
+        } else if (str2.test(url)) {
+            relatedArticle = 'similar';
+        }
+    </script>
+
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/img/logo.jpg">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/static/img/logo.jpg">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/static/img/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/static/img/logo.jpg">
+
+    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255, 255, 255, .38) solid !important;
+        border-radius: 4px !important;
+    }
+
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+
+<body cz-shortcut-listen="true">
+<div id="qr_code_pc" class="qr_code_pc">
+    <img src="/static/m_article_list_files/qrcode">
+    <p>微信扫一扫<br>关注该公众号</p>
+</div>
+
+<div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="/static/m_article_list_files/pic300.jpg">
+</div>
+
+<div id="messenger" class="messenger">
+    正确的提示信息
+</div>
+<!--文章评论-->
+<div id="pl-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-submit-pl-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="pl-textarea"></textarea>
+    </div>
+</div>
+<!--热议评论-->
+<div id="topic-pl-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-topic-submit-pl-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="topic-pl-textarea"></textarea>
+    </div>
+</div>
+<!--热议点评评论-->
+<div id="topic-dp-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-topic-submit-dp-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="topic-dp-textarea"></textarea>
+    </div>
+</div>
+<!--简讯评论-->
+<div id="brief-pl-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-brief-submit-pl-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="brief-pl-textarea"></textarea>
+    </div>
+</div>
+
+<div class="htmlBox">
+    <div id="feedback-box" class="pl-form-box feedback-box">
+        <div class="title">
+            <a class="js-open-feedback pull-left">取消</a>
+            <a class="js-submit-feedback-form pull-right">发送</a>
+            反馈意见
+        </div>
+        <div class="pl-textarea-box">
+            <textarea class="pl-textarea" id="content" placeholder="请输入反馈，我们将为您不断改进"></textarea>
+            <input class="feedback-input" id="contact" placeholder="联系方式 / 邮箱">
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-box"></div>
+    </nav>
+
+
+    <!--导航-->
+    <div class="user-wrap">
+        {% m_navbar %}
+
+    </div>
+    <!--搜索框-->
+    <div class="search-wrap">
+        <div class="search-input-box">
+
+            <form action="https://m.huxiu.com/search.html" method="get">
+                <button class="input-sm-search" onclick="return search_box()"><i class="icon icon-sm-search"></i>
+                </button>
+                <input type="search" name="s" id="top-search" class="search-input" placeholder="输入关键词">
+                <a class="close-box js-search-cancel">取消</a>
+            </form>
+        </div>
+        <div class="search-act search-history-act">
+            搜索历史
+        </div>
+        <ul class="search-ul search-history">
+            <li><a href="https://m.huxiu.com/search.html?s=%E6%95%B0%E7%A0%81">数码</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E4%BA%92%E8%81%94%E7%BD%91">互联网</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E6%95%B0%E7%A0%81">数码</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E6%95%B0%E4%BA%92%E8%81%94%E7%BD%91%E7%A0%81">互联网</a></li>
+        </ul>
+        <div class="search-act search-hot">
+            热搜词
+        </div>
+        <ul class="search-ul search-hot">
+            <li><a href="https://m.huxiu.com/search.html?s=%E6%95%B0%E7%A0%81&amp;f=hot_search">数码</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80&amp;f=hot_search">科技</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E4%BA%92%E8%81%94%E7%BD%91&amp;f=hot_search">互联网</a></li>
+            <li>
+                <a href="https://m.huxiu.com/search.html?s=%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6&amp;f=hot_search">汽车之家</a>
+            </li>
+            <li><a href="https://m.huxiu.com/search.html?s=Uber&amp;f=hot_search">Uber</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E6%94%AF%E4%BB%98%E5%AE%9D&amp;f=hot_search">支付宝</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E5%A4%A7%E6%95%B0%E6%8D%AE&amp;f=hot_search">大数据</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E5%88%9B%E4%B8%9A&amp;f=hot_search">创业</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E6%97%85%E6%B8%B8&amp;f=hot_search">旅游</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E7%BE%8E%E5%9B%A2&amp;f=hot_search">美团</a></li>
+            <li><a href="https://m.huxiu.com/search.html?s=%E7%A4%BE%E4%BA%A4&amp;f=hot_search">社交</a></li>
+        </ul>
+    </div>
+    <header>
+        <div class="top-bar">
+            <div class="nums" style="display: block;"></div>
+            <button class="navbar-toggle js-open-nav" type="button">
+                <div class="icon-bar"></div>
+                <div class="icon-bar"></div>
+                <div class="icon-bar"></div>
+            </button>
+
+            <div class="logo-box">
+                <a href="/">
+                    <img src="/static/img/logo.jpg">
+                </a>
+            </div>
+            <div class="pull-right search-box js-search-cancel js-hmt-detection" data-detection="首页-搜索按钮,点击,点击">
+                <i class="icon icon-search"></i>
+            </div>
+        </div>
+
+    </header>
+    <div class="modal-message">
+        <span class="title">账号或密码错误</span>
+    </div>
+    <div class="column-wrap">
+        <div class="zt-container text-center"><span>{{ category.name }}</span></div>
+
+        <div class="zt-article-wrap no-left zt-article-append-box" id="channel-article-box">
+            <!--第一张头图-->
+            <div class="zt-article-list">
+                <a href="{% url "article:details" first.id %}">
+                    <div class="zt-article-big-pic">
+                        <img class="lazy"
+                             data-original="{{ first.cover_url }}?imageView2/1/w/900/h/675/|imageMogr2/strip/interlace/1/quality/85/format/jpg "
+                             src="{{ first.cover_url }}" style="display: inline;">
+                    </div>
+                    <h2 class="pd-article-title">{{ first.title }}</h2>
+
+                    <div class="zt-article-time clearfix">
+                        <span class="fl zt-author">{{ first.display_author }}</span>
+                        <span class="fl">{{ first.created_at }}</span>
+                        <span class="fr">
+                                        <em>{{ first.favorites_count }}</em>人收藏
+                                    </span>
+                    </div>
+                </a>
+            </div>
+
+            {% for article in article_list %}
+                <div class="zt-article-list">
+                    <a href="{% url "article:details" article.id %}">
+                        <div class="zt-article-pic fr">
+                            <img class="lazy"
+                                 data-original="{{ article.cover_url }}?imageView2/1/w/324/h/243/|imageMogr2/strip/interlace/1/quality/85/format/jpg"
+                                 src="{{ article.cover_url }}" style="display: inline;">
+                        </div>
+                        <div class="zt-article-info pd-article-info">
+                            <h2>
+                                <span>{{ article.title }}</span>
+                            </h2>
+
+                            <div class="zt-article-time clearfix">
+                                <span class="fl zt-author">{{ article.creator.diplay_name }}</span>
+                                <span class="fl">{{ article.created_at }}</span>
+                                <span class="article-pl fr">
+                                                <em>{{ article.favorites_count }}</em>人收藏
+                                            </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        {#        <div class="bottom-more js-more-zt-article" data-cur_page="1" data-catid="22">#}
+        {#            点击加载更多#}
+        {#        </div>#}
+
+    </div>
+
+    {#    <div class="mod-sidebar">#}
+    {#        <div class="goTo go-to-box" style="display: none;"><i class="icon icon-goTo js-go-to"></i></div>#}
+    {#        <div class="goTo js-open-feedback" style="display: none;">反馈</div>#}
+    {#    </div>#}
+    <footer style="display: block;">
+        {#        <ul>#}
+        {#            <li><a href="https://m.huxiu.com/about" target="_blank">关于我们</a></li>#}
+        {#            <li><a href="https://m.huxiu.com/">手机版</a></li>#}
+        {#            <li><a href="http://www.huxiu.com/?mobile_view_web=1">桌面版</a></li>#}
+        {#            <li><a class="btn-open" onclick="openAPP(&#39;http://www.huxiu.com/app?f=m_index&#39;)">客户端</a></li>#}
+        {#        </ul>#}
+        <div class="copyright-box">
+            ©2017 云酒头条
+        </div>
+    </footer>
+{#    <script>#}
+{#        var _hmt = _hmt || [];#}
+{#        (function () {#}
+{#            var hm = document.createElement("script");#}
+{#            hm.src = "https://hm.baidu.com/hm.js?84cf3e27ee8e5085bf7def1af953d74c";#}
+{#            var s = document.getElementsByTagName("script")[0];#}
+{#            s.parentNode.insertBefore(hm, s);#}
+{#        })();#}
+{#    </script>#}
+{#    <script>#}
+{#        (function (i, s, o, g, r, a, m) {#}
+{#            i['GoogleAnalyticsObject'] = r;#}
+{#            i[r] = i[r] || function () {#}
+{#                        (i[r].q = i[r].q || []).push(arguments)#}
+{#                    }, i[r].l = 1 * new Date();#}
+{#            a = s.createElement(o),#}
+{#                    m = s.getElementsByTagName(o)[0];#}
+{#            a.async = 1;#}
+{#            a.src = g;#}
+{#            m.parentNode.insertBefore(a, m)#}
+{#        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');#}
+{##}
+{#        ga('create', 'UA-64799684-2', 'auto');#}
+{#        ga('send', 'pageview');#}
+{#    </script>#}
+
+    <script>
+        var w = document.documentElement.clientWidth;
+        if (w > 640) {
+            w = 640;
+            var qr_code_pc = document.getElementById('qr_code_pc');
+//        qr_code_pc.style.display="block";
+        }
+        document.documentElement.style.fontSize = 20 / 375 * w + 'px';
+        window.onresize = function () {
+            document.documentElement.style.fontSize = 20 / 375 * w + 'px';
+        }
+    </script>
+
+    <script type="text/javascript" src="/static/m_article_list_files/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/jquery.lazyload.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/fastclick.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/swipe.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/swiper.min.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/jquery.detection.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/modal_log.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/m.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/modal-vip.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/topic.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/activity.js"></script>
+    <script type="text/javascript" src="/static/m_article_list_files/login.js"></script>
+
+</div>
+
+</body>
+</html>

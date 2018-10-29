@@ -1,0 +1,437 @@
+{% load article_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{{ article.title }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="云酒头条">
+    <meta name="keywords" content="{{ article.tags.all }}">
+    <meta name="description" content="{{ article.description }}”">
+    <meta content="{{ article.title }}”" property="og:title">
+    <meta content="article" property="og:type">
+    <meta content="云酒头条" property="og:site_name">
+    <meta content="{% url "article:details" article.id %}" property="og:url">
+    <meta content="{{ article.image.cover_url }}" property="og:image">
+    <meta content="{{ article.description }}”" property="og:description">
+    <link href="/static/mobile/m.css" rel="stylesheet" media="screen">
+    <link href="/static/mobile/topic.css" rel="stylesheet" media="screen">
+    <link href="/static/mobile/activity.css" rel="stylesheet" media="screen">
+    <link href="/static/mobile/vip.css" rel="stylesheet" media="screen">
+    <link href="/static/mobile/ground.css" rel="stylesheet" media="screen">
+    <link href="/static/mobile/login.css" rel="stylesheet" media="screen">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/img/logo.jpg">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/static/img/logo.jpg">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/static/img/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/static/img/logo.jpg">
+
+    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255, 255, 255, .38) solid !important;
+        border-radius: 4px !important;
+    }
+
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+
+<body cz-shortcut-listen="true">
+<div id="qr_code_pc" class="qr_code_pc">
+    <img width="100px" height="100px" src="/static/img/weixin_erweima.png">
+    <p>微信扫一扫<br>关注该公众号</p>
+</div>
+
+<div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="/static/img/logo.jpg">
+</div>
+
+<div id="messenger" class="messenger">
+    正确的提示信息
+</div>
+<!--文章评论-->
+<div id="pl-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-submit-pl-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="pl-textarea"></textarea>
+    </div>
+</div>
+<!--热议评论-->
+<div id="topic-pl-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-topic-submit-pl-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="topic-pl-textarea"></textarea>
+    </div>
+</div>
+<!--热议点评评论-->
+<div id="topic-dp-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-topic-submit-dp-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="topic-dp-textarea"></textarea>
+    </div>
+</div>
+<!--简讯评论-->
+<div id="brief-pl-box" class="pl-form-box">
+    <div class="title">
+        <a class="js-close-pl-form pull-left">取消</a>
+        <a class="js-brief-submit-pl-form pull-right">发送</a>
+        评论
+    </div>
+    <div class="pl-textarea-box">
+        <textarea class="pl-textarea" id="brief-pl-textarea"></textarea>
+    </div>
+</div>
+
+<div class="htmlBox bgW" id="article">
+    <input id="openAppType" type="hidden" value="article">
+    <div class="placeholder-box"></div>
+    <div id="feedback-box" class="pl-form-box feedback-box">
+        <div class="title">
+            <a class="js-open-feedback pull-left">取消</a>
+            <a class="js-submit-feedback-form pull-right">发送</a>
+            反馈意见
+        </div>
+        <div class="pl-textarea-box">
+            <textarea class="pl-textarea" id="content" placeholder="请输入反馈，我们将为您不断改进"></textarea>
+            <input class="feedback-input" id="contact" placeholder="联系方式 / 邮箱">
+        </div>
+    </div>
+
+    <nav style="display: none; opacity: 0;">
+        <div class="nav-box"></div>
+    </nav>
+
+    <!--导航-->
+    <div class="user-wrap" style="display: none;">
+        {% m_navbar %}
+    </div>
+    <!--搜索框-->
+    <div class="search-wrap" style="display: none;">
+    </div>
+    <header>
+        <div class="top-bar">
+            <button class="navbar-toggle js-open-nav" type="button">
+                <div class="icon-bar"></div>
+                <div class="icon-bar"></div>
+                <div class="icon-bar"></div>
+            </button>
+
+            <div class="logo-box">
+                <a href="/">
+                    <img src="/static/img/logo.jpg">
+                </a>
+            </div>
+            <div class="pull-right search-box js-search-cancel js-hmt-detection" data-detection="首页-搜索按钮,点击,点击">
+                <i class="icon icon-search"></i>
+            </div>
+        </div>
+
+    </header>
+    <div class="modal-message">
+        <span class="title">账号或密码错误</span>
+    </div>    <!--新版通栏大图广告-->
+
+    <!--文章标题or作者时间-->
+    <div class="article-content-title-box" id="article">
+        <div class="title">{{ article.title }}</div>
+
+        <!--作者or时间-->
+        <div class="article-author-box clearfix">
+            <div class="face-box fl">
+                <a href="{% url "member:index" article.creator.id %}" class="" target="_blank">
+                        <span class="icon-v" style="line-height: 1.8;">
+                                                    </span>
+                    <img src="{{ article.creator.avatar_url }}">
+                </a>
+            </div>
+            <span class="username fl">
+                    <a href="{% url "member:index" article.creator.id %}" class="author-a1" target="_blank">
+                        {{ article.display_author }}                    </a>
+                </span>
+            <span class="icon-author  fl">
+                    <i class="c-hxrz hxfwtd" title="云酒团队"></i>                </span>
+            <span class="fr">{{ article.created_at }}</span>
+        </div>
+    </div>
+
+    <!--头图-->
+    <div class="article-content-img">
+        <span class="bg-gradient"></span>
+        <img src="{{ article.cover_url }}">
+    </div>
+
+    <!--编辑转推-->
+
+    <!--正文-->
+
+    <div cellpadding="0" cellspacing="0" class="article-box">
+        <div id="article_content">
+            {{ article.content|safe }}
+        </div>
+    <div style="margin-bottom: 10px; text-align: center;">
+        <img src="/static/img/weixin_erweima.png" style="width: 320px;" alt="关注我们">
+    </div>
+    </div>
+
+
+    {#    <div class="exceptional-box">#}
+    {#        <div class="name">为作者：<span>Eastland</span>打个赏</div>#}
+    {#        <div class="qr-box">#}
+    {#            <img src="/static/mobile/303086_weixin.jpg">#}
+    {#        </div>#}
+    {#        <div class="info">长按识别二维码</div>#}
+    {#    </div>#}
+
+
+    {#    <!--延伸阅读-->#}
+    {#    <div class="art-sc-wrap">#}
+    {#        <h2>本文已被收藏在:</h2>#}
+    {#        <ul class="art-sc-list">#}
+    {#            <li>#}
+    {#                <a href="https://m.huxiu.com/collection/2.html?f=m_article_collection_2" class="column-link"#}
+    {#                   target="_blank">#深度#</a>#}
+    {#            </li>#}
+    {#            <li>#}
+    {#                <a href="https://m.huxiu.com/channel/103.html?f=m_article_channel_103" class="column-link"#}
+    {#                   target="_blank">电商消费</a>#}
+    {#            </li>#}
+    {#        </ul>#}
+    {#    </div>#}
+    {##}
+    {#    <!--  普通文章或者非抢鲜期文章展示模块开始 -->#}
+    {#    <div class="share-box wx-share-box">#}
+    {#        <div class="title"><span>分享</span></div>#}
+    {#        <ul class="share-ul">#}
+    {#            <ul class="share-ul">#}
+    {#                <li class="nativeShare weixin js-share-detection" data-f="?f=article_weixin" data-detection="文章互动,微信,点击"#}
+    {#                    data-app="weixin" style="display: none;">#}
+    {#                    <a><i class="icon icon-wx"></i></a>#}
+    {#                </li>#}
+    {#                <li class="nativeShare js-share-detection" data-f="?f=article_friend" data-detection="文章互动,朋友圈,点击"#}
+    {#                    data-app="weixinFriend" style="display: none;">#}
+    {#                    <a><i class="icon icon-timeLine"></i></a>#}
+    {#                </li>#}
+    {#                <li class="nativeShare js-share-detection" data-f="?f=article_weibo" data-detection="文章互动,微博,点击"#}
+    {#                    data-app="sinaWeibo">#}
+    {#                    <a><i class="icon icon-wb"></i></a>#}
+    {#                </li>#}
+    {#                <li class="nativeShare js-share-detection" data-f="?f=article_QQ" data-detection="文章互动,QQ,点击"#}
+    {#                    data-app="QQ" style="display: none;">#}
+    {#                    <a><i class="icon icon-qq"></i></a>#}
+    {#                </li>#}
+    {#                <li class="nativeShare js-share-detection" data-f="?f=article_QQZone" data-detection="文章互动,QQ空间,点击"#}
+    {#                    data-app="QZone">#}
+    {#                    <a><i class="icon icon-qqZone"></i></a>#}
+    {#                </li>#}
+    {#                <li style="display: none;"></li>#}
+    {#            </ul>#}
+    {#        </ul>#}
+    {#    </div>#}
+    {#    <div class="placeholder-line"></div>#}
+    {#    <div class="article-ad-box">#}
+    {#        <a href="http://analyzer.huxiu.com/event/jump?id=6&amp;source=2">#}
+    {#            <img src="/static/mobile/094308375472.png">#}
+    {#        </a>#}
+    {#    </div>#}
+
+    {#    <!--下一篇-->#}
+    {#    <div class="placeholder-line"></div>#}
+    {#    <div class="next-article-box">#}
+    {#        <h2 class="next-title">下一篇</h2>#}
+    {#        <span class="span-line"></span>#}
+    {#        <ul class="article-feed-ul">#}
+    {#            <li>#}
+    {#                <div class="article-info-box">#}
+    {#                    <a href="https://m.huxiu.com/article/182743.html">#}
+    {#                        <div class="article-md-title">任正非华为BG年度大会讲话体现了他的焦虑</div>#}
+    {#                    </a>#}
+    {#                    <div class="next-article-time clearfix">#}
+    {#                        <span class="fl">1天前</span>#}
+    {#                        <span class="fr"><em>23</em>人收藏</span>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </li>#}
+    {#        </ul>#}
+    {#    </div>#}
+
+    <!--相关阅读-->
+
+    <!--热文推荐-->
+    {% m_hot_articles %}
+
+    {#    <div class="btn-group">#}
+    {#        <ul>#}
+    {#            <li style="display: none;">#}
+    {#                <a href="https://m.huxiu.com/">#}
+    {#                    <i class="icon icon-md icon-home"></i>#}
+    {#                </a>#}
+    {#            </li>#}
+    {#            <li>#}
+    {#                <a href="https://m.huxiu.com/comment/182748.html">#}
+    {#                    <i class="icon icon-md icon-comments">#}
+    {#                        <div class="pl-number">16</div>#}
+    {#                    </i>#}
+    {#                </a>#}
+    {#            </li>#}
+    {#            <li class="js-article-praise js-ga-detection " data-detection="文章互动,点赞,点击"><i#}
+    {#                    class="icon icon-md icon-md-praise ">#}
+    {#                <div class="pl-number js-number">49</div>#}
+    {#            </i>#}
+    {#            </li>#}
+    {#            <li class="js-article-collection js-ga-detection" data-detection="文章互动,收藏,点击"><i#}
+    {#                    class="icon icon-md icon-collection "></i></li>#}
+    {#            <li class="js-open-share " id="btnShareFirend"><i class="icon icon-md icon-share"></i></li>#}
+    {#        </ul>#}
+    {#    </div>#}
+
+    <!--新版大图底部广告-->
+
+    <!--  普通文章或者非抢鲜期文章展示模块结束 -->
+    {#    <script src="/static/mobile/nativeShare.js"></script>#}
+
+    {#    <div class="mod-sidebar">#}
+    {#        <div class="goTo go-to-box" style="display: none;"><i class="icon icon-goTo js-go-to"></i></div>#}
+    {#        <div class="goTo js-open-feedback" style="display: none;">反馈</div>#}
+    {#    </div>#}
+    <footer style="display: block;">
+        {#        <ul>#}
+        {#            <li><a href="https://m.huxiu.com/about" target="_blank">关于我们</a></li>#}
+        {#            <li><a href="https://m.huxiu.com/">手机版</a></li>#}
+        {#            <li><a href="http://www.huxiu.com/?mobile_view_web=1">桌面版</a></li>#}
+        {#            <li><a class="btn-open" onclick="openAPP(&#39;http://www.huxiu.com/app?f=m_index&#39;)">客户端</a></li>#}
+        {#        </ul>#}
+        <div class="copyright-box">
+            ©2017 云酒头条
+        </div>
+    </footer>
+
+    <script>
+        var w = document.documentElement.clientWidth;
+        if (w > 640) {
+            w = 640;
+            var qr_code_pc = document.getElementById('qr_code_pc');
+            qr_code_pc.style.display="block";
+        }
+        document.documentElement.style.fontSize = 20 / 375 * w + 'px';
+        window.onresize = function () {
+            document.documentElement.style.fontSize = 20 / 375 * w + 'px';
+        }
+    </script>
+
+    <script type="text/javascript" src="/static/mobile/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/mobile/jquery.lazyload.js"></script>
+    <script type="text/javascript" src="/static/mobile/fastclick.js"></script>
+    <script type="text/javascript" src="/static/mobile/swipe.js"></script>
+    <script type="text/javascript" src="/static/mobile/swiper.min.js"></script>
+    <script type="text/javascript" src="/static/mobile/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/mobile/jquery.detection.js"></script>
+    <script type="text/javascript" src="/static/mobile/modal_log.js"></script>
+    <script type="text/javascript" src="/static/mobile/m.js"></script>
+    <script type="text/javascript" src="/static/mobile/modal-vip.js"></script>
+    <script type="text/javascript" src="/static/mobile/topic.js"></script>
+    <script type="text/javascript" src="/static/mobile/activity.js"></script>
+    <script type="text/javascript" src="/static/mobile/login.js"></script>
+
+    {#    <script>#}
+    {#        (function () {#}
+    {#            var bp = document.createElement('script');#}
+    {#            var curProtocol = window.location.protocol.split(':')[0];#}
+    {#            if (curProtocol === 'https') {#}
+    {#                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';#}
+    {#            }#}
+    {#            else {#}
+    {#                bp.src = 'http://push.zhanzhang.baidu.com/push.js';#}
+    {#            }#}
+    {#            var s = document.getElementsByTagName("script")[0];#}
+    {#            s.parentNode.insertBefore(bp, s);#}
+    {#        })();#}
+    {#    </script>#}
+    {#    <script>#}
+    {#        $(document).ready(function () {#}
+    {#            var relatedArcWrap = $('#related-article-wrap');#}
+    {#            var relatedArcWrapHide = $('#related-article-wrap-hide').val();#}
+    {#            $.ajax({#}
+    {#                url: '/relatedArticle/' + relatedArcWrapHide,#}
+    {#                type: 'get',#}
+    {#                dataType: 'json',#}
+    {#                async: true,#}
+    {#                success: function (data) {#}
+    {#                    if (data.success == true) {#}
+    {#                        relatedArcWrap.append(data.data.data);#}
+    {#                    }#}
+    {#                }#}
+    {#            });#}
+    {#        });#}
+    {##}
+    {#        $(document).on('click', '.js-related-article', function () {#}
+    {#            var aid = $(this).attr('data-id');#}
+    {#            var relatedSourceType = $('#relatedSourceType').val();#}
+    {#            window.open('/article/' + aid + '.html?rec=' + relatedSourceType);#}
+    {#            if (relatedSourceType == 'manual') {#}
+    {#                $.myDetection.htmDetection('文章,相关文章手动,点击');#}
+    {#            } else if (relatedSourceType == 'similar') {#}
+    {#                $.myDetection.htmDetection('文章,相关文章机器自动,点击');#}
+    {#            }#}
+    {#        });#}
+
+    {##}
+    {#    </script>#}
+    {#    <script>#}
+    {#        var nav_share = {#}
+    {#            id: 'nav-share',#}
+    {#            url: window.location.href,#}
+    {#            share_type: 'article',#}
+    {#            data_id: '182748',#}
+    {#            share_img: 'https://imgs.bipush.com/article/cover/201702/28/065703018262.jpg?imageView2/1/w/1350/h/759/|imageMogr2/strip/interlace/1/quality/85/format/jpg',#}
+    {#            title: '王卫身价超过马化腾，但资本背后都是辛苦钱！顺丰股价难“顺风”',#}
+    {#            desc: '假如涨停持续到本周五，王卫将超越“隔壁老王”',#}
+    {##}
+    {#            share_wx_f: 'article_weixin',#}
+    {#            share_time_line_f: 'article_friend',#}
+    {#            share_wb_f: 'article_weibo',#}
+    {#            share_qq_f: 'article_QQ',#}
+    {#            share_qq_zone_f: 'article_QQZone',#}
+    {##}
+    {#            share_wx_d: '文章互动,微信,点击',#}
+    {#            share_time_line_d: '文章互动,朋友圈,点击',#}
+    {#            share_wb_d: '文章互动,微博,点击',#}
+    {#            share_qq_d: '文章互动,QQ,点击',#}
+    {#            share_qq_zone_d: '文章互动,QQ空间,点击'#}
+    {#        };#}
+    {#        if (!bw.isWX && !bw.isQQ) {#}
+    {#            nav_share.share_wb_d = '文章互动,分享非-微博,点击';#}
+    {#            nav_share.share_qq_zone_d = '文章互动,分享非-QQ空间,点击';#}
+    {#        }#}
+    {#    </script>#}
+</div>
+
+</body>
+</html>

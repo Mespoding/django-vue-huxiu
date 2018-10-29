@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link charset="utf-8" rel="stylesheet" href="/static/css/jquery.jcrop.css">
+{% endblock %}
+
+{% block container %}
+    <div class="edit-warp" id="per_center">
+        <div class="user-container" style="min-height: 700px;">
+            <div class="go-back"><a href="{% url 'member:index' user.id %}"><i class="icon icon-go-back"></i>返回我的个人中心主页</a>
+            </div>
+
+            <div class="nav-warp">
+                <ul>
+                    <li class="{{ cl_base }}"><a href="{% url 'user:base' %}">修改资料</a></li>
+                    <li class="{{ cl_account }}"><a href="{% url 'user:account' %}">账户信息</a></li>
+{#                    <li class="{{ cl_bind }}"><a href="{% url 'user:bind' %}">账户绑定</a></li>#}
+                </ul>
+            </div>
+
+            {% block form-info %}
+
+            {% endblock %}
+
+        </div>
+        <div style="height: 60px">
+
+        </div>
+    </div>
+
+{% endblock %}

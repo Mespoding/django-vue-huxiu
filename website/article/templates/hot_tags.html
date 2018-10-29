@@ -1,0 +1,14 @@
+<div class="box-moder hot-tag">
+    <h3>{{ title }}</h3>
+{#                <span class="pull-right project-more"><a href="https://www.huxiu.com/tags.html" class="transition"#}
+{#                                                         target="_blank">全部</a></span>#}
+    <span class="span-mark"></span>
+    <div class="search-history search-hot">
+        <ul>
+            {% for tag in tags %}
+            <li class="transition"><a href="{% url 'article:tag_list' tag.id %}" target="_blank">{{ tag.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

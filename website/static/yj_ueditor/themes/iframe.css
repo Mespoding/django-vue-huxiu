@@ -1,0 +1,69 @@
+
+.img-center-box{
+    text-align: center;
+}
+.edui-default .edui-box.edui-for-insertimage,.edui-default .edui-box.edui-for-imgUpload{
+    display: none!important;
+}
+img{
+    max-width: 100% !important;
+}
+.view{
+    font-family: "Arial", "微软雅黑", "Microsoft yahei", "Hiragino Sans GB", "冬青黑体简体中文 w3", "Microsoft Yahei", "Hiragino Sans GB", "冬青黑体简体中文 w3", STXihei, "华文细黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+    color: #333333;
+    line-height: 30px;
+    margin: 0;
+    font-size: 16px;
+}
+p{
+    margin: 0px;
+    line-height: 30px;
+}
+.text-big-title{
+    font-size: 20px;
+    color: #a41d1d;
+    font-weight: 700;
+}
+.text-sm-title{
+    font-size: 18px;
+    font-weight: 700;
+    color: #a41d1d;
+}
+.text-hxzhu{
+    color: #999;
+}
+.text-remarks{
+    color: #999;
+}
+.list-paddingleft-2 {
+    padding-left:17px !important;
+}
+blockquote {
+    border: none;
+    margin: 0;
+    padding: 25px 30px;
+    background-color: #f5f5f5;
+    display: block;
+    font-size: 16px;
+    line-height: 23px;
+}
+.view a{
+    color: #333;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+.view a:hover {
+    border-bottom: 1px solid #3ac5f6;
+    color: #3CA5F6;
+}
+.view .border-none{
+    border: none !important;
+}
+.view .videoA{
+    display: inline-block;
+    height: 400px;
+    width: 710px;
+    background: url("http://images.huxiu.com/article/cover/201607/20/155142900988.jpg");
+    background-size: 100%;
+}

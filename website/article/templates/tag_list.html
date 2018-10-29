@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="container" id="article" style="min-height:600px;">
+    <div class="tag-wrap" id="tags">
+        <div class="previous-step">
+{#            <a href="{% url 'article:total_tags' %}">&lt;&nbsp;返回全部标签</a>#}
+        </div>
+        <div class="tag-title">{{ tag.name }}</div>
+
+        {% if tag.description %}
+        <div class="tag-content tag-content-local active">
+            <p>
+            {{ tag.description }}
+            </p>
+        </div>
+        {% endif %}
+{#        <div class="tag-content tag-content-all">#}
+{#            <p>#}
+{#                阿里巴巴集团是中国最大的电子商务公司。集团下有11家公司：阿里巴巴B2B（HK：1688）、天猫、淘宝、支付宝、阿里软件、阿里妈妈、口碑网、阿里云、中国雅虎、一淘网、中国万网，聚划算、CNZZ。</p>#}
+{#            <div>#}
+{#                1999年，马云在杭州创立阿里巴巴，随后成为在240多个国家和地区超过6100万名注册用户的网上交易社区。2003年5月，阿里巴巴投资1亿元人民币建立淘宝网，2004年设立支付宝公司。2005年8月，阿里巴巴全资收购中国雅虎，同时，雅虎美国投资10亿美元成为阿里巴巴的战略股东。2009年9月，阿里巴巴成立云计算子公司“阿里云”。2010年6月，阿里巴巴收购美国电子商务企业Vendio#}
+{#                Services。2010年11月，淘宝网分拆成淘宝网、淘宝商城和一淘网，淘宝商城在2012年1月更名“天猫”。#}
+{#            </div>#}
+{#            <div>2012年2月，阿里巴巴集团宣布要以13.5港元的每股收购价，将在香港上市的同名子公司私有化，预计耗资190亿港元。</div>#}
+{#            <div>2012年5月21日，阿里巴巴和雅虎达成协议，以63亿美元现金和8亿美元新增阿里集团优先股来回购雅虎手中的20%股权。如果交易完成，各个股东的持股比例将为：雅虎26.58%、软银35.27%、马云管理层持股#}
+{#                38.15%#}
+{#            </div>#}
+{#            <div><br></div>#}
+{#            <span class="sea-more dropup js-sea-more">#}
+{#                    收起<span class="caret"></span>#}
+{#                    </span>#}
+{#            <p></p>#}
+{#        </div>#}
+
+
+        <div class="related-article">
+            <span class="span-mark-author">相关文章</span>
+            <ul>
+                {% for article in article_list %}
+                <li><a href="{% url 'article:details' article.id %}">{{ article.title }}</a><span
+                        class="pull-right time">{{ article.publish_at }}</span></li>
+                {% endfor %}
+            </ul>
+{#            <div class="get-mod-more js-get-tag-more-list transition" data-cur_page="2" data-tag_id="36">#}
+{#                点击加载更多#}
+{#            </div>#}
+        </div>
+    </div>
+</div>
+{% endblock %}

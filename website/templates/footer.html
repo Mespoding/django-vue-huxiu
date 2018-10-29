@@ -1,0 +1,83 @@
+<footer class="footer">
+    <div class="modal-backdrop fade in js-modal-backdrop"></div>
+    <div class="feedback-box" onmouseover="is_feedback=false" onmouseout="is_feedback=true">
+
+        <div class="close-box pull-right js-feedback-close" data-show="true">
+            <i class="icon icon-close"></i>
+        </div>
+        <div class="will-choose">*</div>
+        <textarea id="content" class="form-control" placeholder="请输入反馈，我们将为您不断改进"></textarea>
+        <input class="form-control" id="contact" placeholder="请输入手机/邮箱">
+        <a class="btn btn-article pull-left js-feedback-submit transition">提交</a><span
+            class="will-choose-error">请输入反馈信息</span>
+    </div>
+    <div class="go-top go-feedback transition" style="display: block;">
+        <div class="js-show-feedback-box">
+            用户反馈
+        </div>
+    </div>
+    <div class="go-top go-feedback app-feedback js-app-feedback transition" style="display: block;">
+        <div class="app-footer-guide " style="height: 150px">
+            <img src="/static/img/weixin_erweima.png">
+            <span style="color: #333;line-height:2;">微信扫一扫</span>
+        </div>
+        <div class="">
+            <i class="icon icon-big-phone"></i>
+            公众号
+        </div>
+    </div>
+    <div class="go-top js-go-top transition" id="go-top-btn" style="display: block; bottom: 151px;"><i
+            class="icon icon-top"></i></div>
+
+    <div class="container copy-right">
+        <div class="footer-tag-list">
+            <a href="{% url 'about_us' %}" target="_blank" class="transition">关于我们</a>
+            <a href="{% url 'join_us' %}" target="_blank" class="transition">加入我们</a>
+{#            <a href="{% url 'partners' %}" target="_blank" class="transition">合作伙伴</a>#}
+            <a href="{% url 'friend_links' %}" target="_blank" class="transition">友情链接</a>
+            <a href="{% url 'ad_service' %}" target="_blank" class="transition">广告及服务</a>
+{#            <a href="{% url 'questions' %}" target="_blank" class="transition">常见问题解答</a>#}
+            <a href="javascript:" target="_blank" class="transition js-show-feedback-box min-feedback"
+               style="display: none;">用户反馈</a>
+
+        </div>
+        <span>Copyright © <a href="/">云酒网</a>
+            <a href="http://www.miitbeian.gov.cn/"
+               target="_blank">京ICP备16059938号-1</a>
+        </span>
+        <div class="footer-icon-list pull-right">
+            <ul>
+                <a>
+                    <li class="Qr-code-footer">
+                        <div class="app-qrcode">
+                            <img src="/static/img/weixin_erweima.png">
+                        </div>
+                        <i class="icon icon-footer icon-footer-wx"></i>
+                    </li>
+                </a>
+                {#                <a>#}
+                {#                    <li class="Qr-code-footer">#}
+                {#                        <div class="app-qrcode">#}
+                {#                            <img src="/static/img/app_erweima.png">#}
+                {#                        </div>#}
+                {#                        <i class="icon icon-footer icon-footer-ios"></i>#}
+                {#                    </li>#}
+                {#                </a>#}
+                {#                <a>#}
+                {#                    <li class="Qr-code-footer">#}
+                {#                        <div class="app-qrcode">#}
+                {#                            <img src="/static/img/app_erweima.png">#}
+                {#                        </div>#}
+                {#                        <i class="icon icon-footer icon-footer-android"></i>#}
+                {#                    </li>#}
+                {#                </a>#}
+                {#                <a href="http://en.huxiu.com/" target="_blank" title="云酒英文版">#}
+                {#                    <li><i class="icon icon-footer icon-footer-inter"></i></li>#}
+                {#                </a>#}
+                {#                <a href="http://www.huxiu.com/rss" target="_blank" title="云酒RSS订阅中心">#}
+                {#                    <li><i class="icon icon-footer icon-footer-rss"></i></li>#}
+                {#                </a>#}
+            </ul>
+        </div>
+    </div>
+</footer>

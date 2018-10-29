@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    云酒专题
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/activity.css">
+{% endblock %}
+
+{% block container %}
+    <link rel="stylesheet" href="/static/active_list_files/bootstrap-datetimepicker.min.css">
+    <h1 class="t-h1">专题-云酒头条</h1>
+    <div class="container" id="activity" style="min-height: 70%;">
+        <div class="nav-column">
+            <i class="icon2 icon-calendar"></i>云酒专题
+        </div>
+        <div class="activity-list-warp">
+            {% for active in actives %}
+                <section class="transition">
+                    <div class="review-past-warp">
+                        <a href="javascript:" class="pull-right get-more js-get-more">返回<i
+                                class="icon2 icon-chevron-right"></i></a>
+                        <div class="activity-name"><a href="{% url 'active:details' active.id %}"
+                                                      target="_blank">{{ active.title }}</a>
+                        </div>
+                    </div>
+                    <div class="angle-warp">
+                        {{ active.mark }}
+                    </div>
+                    <div class="activity-pic">
+                        <a href="{% url 'active:details' active.id %}" target="_blank">
+                            <img src="{{ active.cover_url }}"></a>
+                    </div>
+                    <div class="activity-content-warp">
+                        <div class="activity-type pull-right ">{{ active.status }}</div>
+                        <div class="activity-name">
+                            <a href="{% url 'active:details' active.id %}" target="_blank">{{ active.title }}</a>
+                        </div>
+                        <div class="activity-content">{{ active.description }}</div>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+

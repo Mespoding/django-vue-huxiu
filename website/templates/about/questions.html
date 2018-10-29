@@ -1,0 +1,11 @@
+{% extends "about/about_base.html" %}
+
+{% block about_name %}
+常见问题解答
+{% endblock %}
+
+{% block about_content %}
+    <div class="">
+        {{ object.content|safe }}
+    </div>
+{% endblock %}

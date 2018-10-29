@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load article_filter %}
+{% load article_tags %}
+
+
+{% block container %}
+    <div class="container">
+        <div class="wrap-left pull-left">
+            <form role="search" method="get" action="{% url 'article:search' %}" _lpchecked="1">
+                <input class="search-input-list" name="s" value="{{ s }}">
+                <button typy="submit" class="search-btn transition"><i class="icon icon-search-list"></i></button>
+            </form>
+            <div class="search-list-warp">
+                <ul class="search-wrap-list-ul">
+                    {% for article in article_list %}
+                        <li>
+                            <h2><a href="{% url 'article:details' article.id %}" target="_blank">{{ article.title }}</a>
+                            </h2>
+                            <div class="mob-summay">{{ article.description|short_string:105 }}
+                            </div>
+                            <div class="mob-author">
+                            <span class="name">
+                                <a target="_blank"
+                                   href="{% url 'member:index' article.creator.id %}">{{ article.display_author }}</a>
+                            </span><span
+                                    class="time">{{ article.publish_at }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+{#                <nav class="page-nav">#}
+{#                    <ul class="pagination">#}
+{#                        <li class="disabled"><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80#"#}
+{#                                                aria-label="First"><span aria-hidden="true"><i#}
+{#                                class="icon icon-first"></i></span></a>#}
+{#                        </li>#}
+{#                        <li class="disabled"><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80#"#}
+{#                                                aria-label="Previous"><span aria-hidden="true"><i#}
+{#                                class="icon icon-lt"></i></span></a>#}
+{#                        </li>#}
+{#                        <li class="active"><a>1</a></li>#}
+{#                        <li><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80&amp;per_page=2">2</a></li>#}
+{#                        <li><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80&amp;per_page=3">3</a></li>#}
+{#                        <li><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80&amp;per_page=4">4</a></li>#}
+{#                        <li><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80&amp;per_page=2"><i#}
+{#                                class="icon icon-gt"></i></a></li>#}
+{#                        <li><a href="https://www.huxiu.com/search.html?s=%E7%A7%91%E6%8A%80&amp;per_page=501"><i#}
+{#                                class="icon icon-last"></i></a></li>#}
+{#                    </ul>#}
+{#                </nav>#}
+            </div>
+        </div>
+        <div class="wrap-right pull-right">
+            {% hot_articles %}
+
+{#            <div class="box-moder moder-project-list moder-user-list">#}
+{#                <h3><b>相关用户</b></h3>#}
+{#                <span class="span-mark"></span>#}
+{#                <ul>#}
+{##}
+{#                    <li>#}
+{#                        <div class="project-pic">#}
+{#                            <a href="https://www.huxiu.com/member/11505.html" target="_blank" class="transition">#}
+{#                                <img src="./search_files/05_avatar_big.jpg!150x150">#}
+{#                            </a>#}
+{#                        </div>#}
+{#                        <div class="project-content">#}
+{#                            <div class="project-title">#}
+{#                                <a href="https://www.huxiu.com/member/11505.html" target="_blank"#}
+{#                                   class="transition">老冀说科技</a>#}
+{#                                <a href="https://www.huxiu.com/vip" target="_blank"></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+        </div>
+    </div>
+{% endblock %}

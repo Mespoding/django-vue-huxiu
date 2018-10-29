@@ -1,0 +1,19 @@
+{% extends 'article/_article.html' %}
+
+{% block message-box %}
+    <div class="message-box">
+        <ul>
+            {% for object in object_list %}
+                <li did="{{ object.id }}" type="article">
+                    <div class="message-title"><a href="/article/contribute/?did={{ object.id }}"
+                                                  target="_blank">{{ object.title }}</a></div>
+                    <div class="message-time">{{ object.created_at }}</div>
+                    <div class="pull-right message-delete hide">
+                        <a href="{% url 'article:contribute' %}?did={{ object.id }}"
+                           target="_blank"><i
+                                class="icon icon-edit"></i></a><i class="icon icon-delete js-pc-del-user"></i></div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'center_base.html' %}
+
+{% block user-content %}
+    <div style="height: 1px"></div>
+
+    {% for object in object_list %}
+        <div class="collect-box" data-cid="{{ object.id }}">
+            <span class="collect-title">{{ object.name }}
+                {% if is_me %}
+                <span><i class="icon icon-edit js-edit-sc-title"></i></span>
+                <span><i class="icon icon-line-pl"></i></span>
+                <i class="icon icon-delete js-delete-sc"></i>
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="collect-warp">
+            {% for favorite in object.c_favorites.all %}
+                <div class="message-box">
+                    <div class="mod-b mod-art " data-aid="{{ favorite.article_id }}">
+                        <a class="transition" href="{% url 'article:details' favorite.article_id %}?f=member_collections" target="_blank">
+                            <div class="mod-thumb">
+                                <img class="lazy"
+                                     data-original="{{ favorite.article.cover_url }}"
+                                     alt="{{ favorite.article.title }}" style="display: inline;"
+                                     src="{{ favorite.article.cover_url }}">
+                            </div>
+                        </a>
+
+                        <div class="mob-ctt">
+                            <h3><a href="{% url 'article:details' favorite.article_id %}?f=member_collections" class="transition" target="_blank">{{ favorite.article.title }}</a>
+                            </h3>
+                            {% if is_me %}
+                            <div class="pull-right message-delete hide" style="margin-top: 0;">
+                                <i data-aid="{{ favorite.article_id }}" data-cid="{{ object.id }}" class="icon icon-delete js-delete-article"></i>
+                            </div>
+                            {% endif %}
+                            <div class="mob-author"><span class="time">{{ favorite.article.publish_at }}</span></div>
+                            <div class="mob-sub">{{ favorite.article.description }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block no-content %}
+    您还没有收藏
+{% endblock %}

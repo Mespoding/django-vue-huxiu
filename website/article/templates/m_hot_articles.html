@@ -1,0 +1,20 @@
+<div class="placeholder-line"></div>
+<div class="recommended-box hot-article-box">
+    <h2>热文推荐</h2>
+    <span class="span-line"></span>
+    <ul class="article-feed-ul">
+        {% for article in articles %}
+        <li>
+            <a href="{% url 'article:details' article.id %}">
+                <div class="article-info-box">
+                    <div class="article-md-title">{{ article.title }}</div>
+                    <div class="author-box hot-article">
+                        <span>{{ article.created_at }}</span>
+                        <span class="pull-right"><em>{{ article.favorites_count }}</em>人收藏</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

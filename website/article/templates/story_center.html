@@ -1,0 +1,64 @@
+<!--早知道部分开始-->
+<div id="story_center"></div>
+<div class="box-moder moder-story-list">
+    <h3>{{ title }}</h3>
+    {#    <span class="pull-right project-more story-more">#}
+    {#        <a href="https://www.huxiu.com/story/index"#}
+    {#           class="transition" target="_blank">全部</a>#}
+    {#    </span>#}
+    <span class="span-mark"></span>
+    <div class="story-box-warp">
+        <div class="nano">
+            <div class="overthrow nano-content description" tabindex="0">
+                <ul class="box-list">
+                    {% for story in stories %}
+                        <li>
+                            <div class="story-content">
+                                <div class="story-title" story-data-show="false">
+                                    <p class="transition"><span class="icon icon-caret"></span>{{ story.title }}
+                                    </p>
+                                </div>
+                                <div class="story-info" style="display:none">
+                                    <p class="story-detail-hide">
+{{ story.description }}                                        &nbsp;<a
+                                            href="{% url "article:details" story.id %}" target="_blank"
+                                            class="transition">详情&gt;&gt;</a></p>
+                                    <div class="story-time">
+                                        <p class="time">{{ story.created_at }}</p>
+{#                                        <p class="like"></p>#}
+{#                                        <div class="article-type pull-right">#}
+{#                                            <div class="icon-like-prompt">#}
+{#                                                <i class="icon icon-like active"></i><span class="c1">+1</span>#}
+{#                                            </div>#}
+{#                                            <ul>#}
+{#                                                <li class="js-icon-like-new load-count-list" data-type="like"#}
+{#                                                    data-id="2064" data-product="story"><i#}
+{#                                                        class="icon icon-like "></i><span#}
+{#                                                        class="like agree-count">3</span></li>#}
+{#                                            </ul>#}
+{#                                        </div>#}
+                                        <p></p>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="story-time story-time-footer">
+                                    <p class="time">{{ story.created_at }}</p>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="nano-pane">
+                <div class="nano-slider" style="height: 179px; transform: translate(0px, 0px);"></div>
+            </div>
+        </div>
+    </div>
+    <div class="js-more-story" data-cur_page="1"></div>
+</div>
+<div class="placeholder"></div>
+{#<input type="hidden" id="agree-add-url" value="https://analyzer.huxiu.com/discuss/agree">#}
+{#<input type="hidden" id="count-info-url" value="https://analyzer.huxiu.com/discuss/getByIds">#}
+<input type="hidden" id="product" value="story">
+<!--早知道部分结束-->

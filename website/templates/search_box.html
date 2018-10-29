@@ -1,0 +1,81 @@
+<div class="message-prompt"></div>
+<script>
+    function checkinput() {
+        var input = $("#search-input").val();
+        if (input == null || input == '') {
+            return false;
+        }
+        return true;
+    }
+</script>
+<div id="login-reg-warp" class="login-reg-warp-modal">
+
+</div>
+
+<div class="search-box" id="search-box">
+    <i class="icon icon-search-close js-show-search-box"></i>
+
+    <div class="search-content">
+
+        <div class="search-input">
+            <form role="search" method="get" action="{% url 'article:search' %}" onsubmit="return checkinput()">
+                <button type="submit"></button>
+                <input placeholder="请输入关键字" name="s" id="search-input">
+                <input type="hidden" name="f" value="index_search" id="search-input">
+            </form>
+        </div>
+        <div class="search-history hide" id="history">
+            <span>我的搜索历史</span>
+            <ul class="transition" id="history_ul">
+                <li class="transition"><a href="{% url 'article:search' %}?s=%E6%95%B0%E7%A0%81">数码</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=%E7%A7%91%E6%8A%80">科技</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=%E7%A7%91%E6%8A%80">科技</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=%E4%BA%92%E8%81%94%E7%BD%91">互联网</a>
+                </li>
+                <li class="transition"><a
+                        href="{% url 'article:search' %}?s=%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6">汽车之家</a></li>
+            </ul>
+            <div class="pull-right empty-history js-empty-history">清空历史</div>
+        </div>
+        <div class="search-history search-hot">
+            <strong>热搜词</strong>
+            <ul>
+                <li class="transition"><a href="{% url 'article:search' %}?s=酒企">酒企</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=白酒">白酒</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=经济">经济</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=名酒">名酒</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=酒精">酒精</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=茅台">茅台</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=机遇">机遇</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=葡萄酒">葡萄酒</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=红酒">红酒</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=酒业">酒业</a></li>
+                <li class="transition"><a href="{% url 'article:search' %}?s=社交">社交</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--[if lt IE 9]>
+    <style>
+        .search-box{
+            background-color: #fff !important;
+        }
+        header .header-column{
+            background-color: #fff !important;
+        }
+        header .navbar-right,header .navbar-left{
+            margin-top: -15px;
+        }
+        .icon-search{
+            position: relative;
+            top: 18px;
+        }
+        body{
+            border: none;
+        }
+        .praise-box-add,.icon-like-prompt,.icon-no-like-prompt{
+            display: none;
+        }
+    </style>
+
+<![endif]-->

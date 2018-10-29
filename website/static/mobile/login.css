@@ -1,0 +1,379 @@
+.login-wrap{
+    position: relative;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 0 1.95rem;
+    color: #000;
+}
+.login-title{
+    display: inline-block;
+    width: 100%;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding-top: 1.45rem;
+}
+.register-link{
+    position: absolute;
+    font-size: 0.75rem;
+    top: 1.6rem;
+    right: 1.95rem;
+}
+.last-login{
+    position: absolute;
+    font-size: 0.75rem;
+    top: 3.55rem;
+    left: 0;
+    right: 0;
+}
+.form-login{
+    position: relative;
+    margin-top: 2.7rem;
+}
+.input-close{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    width: 2rem;
+    height: 1.5rem;
+    text-align: right;
+    vertical-align: top;
+}
+.input-close.second{
+    right: 2rem;
+}
+.input-close.third{
+    right: 4.5rem;
+}
+.show-close{
+    display:block;
+}
+.label-box{
+    position: relative;
+}
+.label-box.col-xs{
+    width: 11.05rem;
+    margin-left: 3.8rem;
+}
+.label-box .l-input{
+    border: none;
+    width: 100%;
+    height: 1.75rem;
+    border-bottom: 1px solid #ddd;
+    margin-top: 0.75rem;
+    outline: none;
+    font-size: 0.75rem;
+    color: #1d1d1d;
+    border-radius: 0;
+}
+.l-input::-webkit-input-placeholder {
+    color:#bbb;
+}
+.l-input:-moz-placeholder {
+    color:#bbbbbb;
+}
+.l-input::-moz-placeholder {
+    color:#bbbbbb;
+}
+.l-input:-ms-input-placeholder {
+    color:#bbbbbb;
+}
+.label-box .l-input.three{
+    color: #000;
+}
+.label-select-box{
+    /*display: inline-block;*/
+    position: absolute;
+    width: 3.2rem;
+    height: 1.75rem;
+    border-bottom: 1px solid #ddd;
+    left: 0;
+    top: 0.75rem;
+    line-height: 1.75rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+}
+.label-box .i-eye{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 2rem;
+    height: 2rem;
+    text-align: right;
+    padding-top: 0.4rem;
+}
+.forget-pass{
+    display: inline-block;
+    font-size: 0.75rem;
+    line-height: 1;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #8d8d8d;
+    right: 0;
+    float: right;
+}
+.btn-login{
+    display: inline-block;
+    height: 2.25rem;
+    background: #000;
+    color: #fff;
+    font-size: 0.85rem;
+    line-height: 2.25rem;
+    border-radius: 0.25rem;
+    width: 100%;
+}
+.btn-login.disabled{
+    background: #bbb;
+}
+.btn-login-code{
+    margin-top: 1.5rem;
+}
+.sms-link{
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 0.75rem;
+    line-height: 1;
+    cursor: pointer;
+    text-align: center;
+}
+.three-login-box{
+    margin-top: 3.25rem;
+    text-align: center;
+}
+.three-login-box a{
+    margin-right: 1.2rem;
+}
+.three-login-box a:last-child{
+    margin-right: 0;
+}
+
+.three-user-pic{
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0.75rem auto -2rem auto;
+}
+.three-user-pic img{
+    width: 100%;
+}
+
+.gain-code-time{
+    position: absolute;
+    font-size: 0.7rem;
+    color: #1d1d1d;
+    right: 0;
+    top: 1.25rem;
+    border-left: 1px solid #F0F0F0;
+    padding-left: 0.5rem;
+}
+
+.gain-code-time.disabled{
+    color: #bbbbbb;
+}
+
+.modal-message{
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 100000;
+    top: 50%;
+    display: none;
+    margin-top: 1rem;
+}
+.modal-message .title{
+    display:inline-block;
+    height: 1.75rem;
+    border-radius: 0.25rem;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0 0.6rem;
+    line-height: 1.95rem;
+    font-size: 0.6rem;
+    color: #fff;
+}
+.area-order{
+    height: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: #f5f5f5;
+    padding: 0 0.8rem;
+    line-height: 1.5rem;
+}
+.area-box{
+    display: none;
+    padding-top: 1.5rem;
+    background: #fff;
+}
+.area-ul{
+    margin-top: 2rem;
+}
+.area-ul li{
+    margin: 0 0.8rem 0 0.8rem;
+    height: 2.3rem;
+    border-top: 1px solid #dddddd;
+    font-size: 0.8rem;
+    line-height: 2.3rem;
+    cursor: pointer;
+}
+.area-order + li{
+    border:none;
+}
+
+.control-box{
+    position: fixed;
+    bottom: 1rem;
+    right: 0;
+}
+.control-box li{
+    font-size: 0.5rem;
+    line-height: 1.5;
+    width: 1rem;
+    cursor: pointer;
+}
+
+.mobile-box{
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 0.76rem;
+    margin-top: 0.8rem;
+    text-align: center;
+    font-weight: lighter;
+}
+
+
+
+
+
+
+
+
+/*登录所需要的图标*/
+.icon-login{
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: url(../images/icon_login.png?v=201611219) no-repeat;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    background-size: 10rem 10rem;
+}
+.i-l-e{
+    background-position: 0 0.23rem;
+}
+.icon-l-close{
+    background-position: 0 -1.4rem;
+}
+.icon-l-caret{
+    background-position: 0 -2.65rem;
+}
+.i-l-qq{
+    width: 2.6rem;height: 2.6rem;
+    background-position: -1.7rem 0rem;
+}
+.i-l-wx{
+    width: 2.6rem;height: 2.6rem;
+    background-position: -4.4rem 0rem;
+}
+.i-l-wb{
+    width: 2.6rem;height: 2.6rem;
+    background-position: -7.2rem 0rem;
+}
+.i-l-zfb{
+    width: 2.6rem;
+    height: 2.6rem;
+    background-position: -1.7rem -3.45rem;
+}
+.i-l-choose{
+    background-position: 0 -4rem;
+    float: right;
+    margin-top: 0.75rem;
+}
+.icon-l-edit{
+    background-position: 0 -7rem;
+}
+.i-l-loading{
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    top: 0.1rem;
+    background-position: -0.25rem -5.5rem;
+    margin-right: 0.2rem;
+    animation: spin 1s linear infinite;/*动画设置*/
+    -webkit-animation: spin 1s linear infinite;/*动画设置*/
+}
+.i-go-back{
+    display: none;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-position: 0.5rem -8rem;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
+}
+
+/*模态框提示*/
+.modal-info{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.50);
+    z-index: 10000;
+}
+.modal-info-content{
+    position: absolute;
+    width: 13.5rem;
+    height: 8.5rem;
+    background: #fff;
+    padding: 1.375rem;
+    top: 50%;
+    left: 50%;
+    margin-left: -6.75rem;
+    margin-top: -4.25rem;
+}
+.modal-info-body{
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: center;
+}
+.btn-close-modal{
+    position: absolute;
+    width: 4.75rem;
+    height: 1.5rem;
+    background: #000;
+    border-radius: 0.25rem;
+    text-align: center;
+    color: #fff;
+    bottom: 1.375rem;
+    left: 50%;
+    margin-left: -2.375rem;
+    line-height: 1.5rem;
+    font-size: 0.65rem;
+    cursor: pointer;
+}
+
+/*动画方法*/
+@keyframes spin {
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}
+@-webkit-keyframes spin{
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}

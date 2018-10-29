@@ -1,0 +1,5 @@
+<ul class="navbar-nav-ul">
+    {% for category in categories %}
+        <li><a href="{% url 'article:list' category.id %}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul>

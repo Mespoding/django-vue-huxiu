@@ -1,0 +1,38 @@
+{% extends 'message/_message.html' %}
+
+{% block message-box %}
+    <div class="message-box">
+        <ul>
+            {% for object in object_list %}
+                <li plid="{{ object.id }}" type="private_msg">
+                    <div class="pull-right message-inner-delete hide">
+                        <i class="icon icon-delete js-pc-del-user"></i>
+                    </div>
+                    <a href="{% url 'member:readmsg' user.id object.id %}">
+                        <div class="message-inner-box">
+                            <div class="face-box">
+                                <img src="https://imgs.bipush.com/auth/data/avatar/2.jpg!150x150">
+                            </div>
+                            <div class="inner-name">
+                                {% if is_me %}
+                                    {{ object.creator.display_name }}
+                                {% else %}
+                                    {{ object.receiver.display_name }}
+                                {% endif %}
+                            </div>
+                            <div class="inner-time">{{ object.created_at }}</div>
+                        </div>
+                        <div class="message-title">{{ object.content }}</div>
+                    </a>
+                </li>
+            {% endfor %}
+
+        </ul>
+
+
+    </div>
+{% endblock %}
+
+{% block no-content %}
+    您还没有私信
+{% endblock %}

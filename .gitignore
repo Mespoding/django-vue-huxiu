@@ -1,0 +1,14 @@
+*.pyc
+*.idea/
+YJW/WEBYJW/App_Data/
+YJW/WEBYJW/Models/
+YJW/WEBYJW/Views/Account/
+YJW/WEBYJW/obj/Debug/TempPE/
+YJW/YJM.Framework/bin/Release/
+YJW/YJM.Framework/obj/Debug/TempPE/
+YJW/YJW.BusinessRule/bin/Release/
+YJW/YJW.BusinessRule/obj/Debug/TempPE/
+YJW/YJW.DataAccess/bin/Release/
+YJW/YJW.DataAccess/obj/Debug/TempPE/
+YJW/YJW.Model/bin/Release/
+YJW/YJW.Model/obj/Debug/TempPE/

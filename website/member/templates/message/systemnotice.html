@@ -1,0 +1,46 @@
+{% extends 'message/_message.html' %}
+
+{% block message-box %}
+
+    <div class="message-box">
+        <ul>
+            <li type="system_msg" class="system_msg">
+                <div class="message-title">
+                    <div class="system-notice">
+                        <div class="title2 c1 f1">您的投稿《justatestpost》未通过审核</div>
+                        <div class="system-link">
+                            理由如下：
+                        </div>
+                        <div class="quote">
+                            <blockquote>
+                                摄影题材的文章与我站定位有一定差距，无法发表。十分抱歉。非常欢迎您继续投稿。
+
+                                感谢您对云酒的支持！
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-time">
+                    2017-01-11 21:13
+                </div>
+                <!--                    <div class="pull-right message-delete hide"><i class="icon icon-delete js-pc-del-user"></i></div>-->
+            </li>
+            <li type="system_msg" class="system_msg">
+                <div class="message-title">
+                    <div class="system-notice">
+                        <div class="title2 c1 f1">您的投稿《justatestpost》正在审核中，您可以至PC端个人中心“我的文章—审核中”页面查看稿件状态。</div>
+                    </div>
+                </div>
+                <div class="message-time">
+                    2017-01-11 20:53
+                </div>
+                <!--                    <div class="pull-right message-delete hide"><i class="icon icon-delete js-pc-del-user"></i></div>-->
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block no-content %}
+    您还没有系统消息
+{% endblock %}

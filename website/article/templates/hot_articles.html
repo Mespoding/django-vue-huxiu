@@ -1,0 +1,18 @@
+<div class="box-moder hot-article">
+    <h3>{{ title }}</h3>
+    <span class="span-mark"></span>
+    <ul>
+        {% for article in articles %}
+        <li>
+            <div class="hot-article-img">
+                <a href="{% url 'article:details' article.id %}" target="_blank">
+                    <img src="{{ article.cover_url }}?imageView2/1/w/280/h/210/|imageMogr2/strip/interlace/1/quality/85/format/jpg">
+                </a>
+            </div>
+            <a href="{% url 'article:details' article.id %}" class="transition" target="_blank">
+                {{ article.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

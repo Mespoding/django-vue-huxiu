@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load article_tags %}
+{% load article_filter %}
+
+{% block title %}
+    {{ category.name }}-云酒网
+{% endblock %}
+
+{% block container %}
+    <div class="container" id="article">
+        <div id="index"></div>
+
+        <div class="wrap-left pull-left">
+        <div class="column-wrap">
+            <span>{{ category.name }}</span>
+        </div>
+            {% include "article_part.html" %}
+
+            <div class="get-mod-more js-get-mod-more-list transition" data-cur_page="1" data-catid="{{ category.id }}"
+                 data-last_dateline="1480913700">
+                点击加载更多
+            </div>
+        </div>
+
+        <div class="wrap-right pull-right">
+            {% hot_articles title='热门' %}
+        </div>
+    </div>
+
+    <div class="js-yarcrontab hidden"></div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

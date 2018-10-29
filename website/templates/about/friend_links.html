@@ -1,0 +1,35 @@
+{% extends "about/about_base.html" %}
+
+{% block about_name %}
+    友情链接
+{% endblock %}
+
+{% block about_content %}
+    <div class="about-min-height">
+        <div class="box-wrap">
+            <!--php部分-->
+            <div class="ctt-wrap lines-wrap">
+                <h4 class="t-h4">合作伙伴</h4>
+                <ul class="clearfix links-img-ul">
+                    {% for companion in companions %}
+                        <li><a href="{{ companion.href }}" target="_blank"><img
+                                src="{{ companion.cover.url }}" title="{{ companion.title }}"></a></li>
+
+                    {% endfor %}
+                </ul>
+
+                <h4 class="t-h4">友情链接</h4>
+                <ul class="clearfix links-txt-ul">
+                    {% for friend_link in friend_links %}
+                        <li><a href="{{ friend_link.href }}" target="_blank">{{ friend_link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="">
+        {{ object.content|safe }}
+    </div>
+{% endblock %}

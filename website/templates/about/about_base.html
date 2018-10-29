@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <style>
+        .joinemail {
+            color: #09F;
+            padding: 0px 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div class="container per_center per_center_body" id="per_center">
+        <div class="user-menu-warp">
+            <div class="menu-warp">
+                <ul>
+                    <li class="{{ cl_about_us }}"><a href="{% url 'about_us' %}">关于我们</a></li>
+                    <li class="{{ cl_join_us }}"><a href="{% url 'join_us' %}">加入我们</a></li>
+{#                    <li class="{{ cl_partners }}"><a href="{% url 'partners' %}">合作伙伴</a></li>#}
+                    <li class="{{ cl_friend_links }}"><a href="{% url 'friend_links' %}">友情链接</a></li>
+                    <li class="{{ cl_ad_service }}"><a href="{% url 'ad_service' %}">广告及服务</a></li>
+{#                    <li class="{{ cl_questions }}"><a href="{% url 'questions' %}">常见问题解答</a></li>#}
+                </ul>
+            </div>
+
+            <div class="user-content-warp">
+                <ul class="nav-box nav-box-border">
+                    <li class="active"><a href="javascript:void(0);">{% block about_name %}{% endblock %}<span class="badge"></span></a></li>
+                </ul>
+                <div class="about-us-box">
+                    {% block about_content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

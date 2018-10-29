@@ -1,0 +1,12 @@
+{% extends "about/about_base.html" %}
+
+{% block about_name %}
+    广告及服务
+{% endblock %}
+
+
+{% block about_content %}
+    <div class="">
+        {{ object.content|safe }}
+    </div>
+{% endblock %}

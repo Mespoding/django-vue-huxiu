@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load article_tags %}
+{% load article_filter %}
+
+{% block container %}
+    <div class="container" id="index">
+
+        <div class="wrap-left pull-left">
+            <div class="big-pic-box">
+                {% if first %}
+                    <!--一级banner图-->
+                    <div class="big-pic">
+                        <a href="{% url 'article:details' first.id %}" target="_blank" class="transition"
+                           title="{{ first.title }}">
+                            <div class="back-img">
+                                <img src="{{ first.cover_url }}?imageView2/1/w/533/h/400/|imageMogr2/strip/interlace/1/quality/85/format/jpg"
+                                     alt="{{ first.title }}">
+                            </div>
+                            <div class="big-pic-content">
+                                <h1 class="t-h1">{{ first.title }}</h1>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if second %}
+                    <!--二级banner图-->
+                    <div class="big2-pic big2-pic-index big2-pic-index-top">
+                        <a href="{% url 'article:details' second.id %}" class="back-img transition" target="_blank"
+                           title="{{ second.title }}">
+                            <img class="lazy"
+                                 data-original="{{ second.cover_url }}?imageView2/1/w/257/h/195/|imageMogr2/strip/interlace/1/quality/85/format/jpg"
+                                 alt="{{ second.title }}" src="{{ second.cover_url }}" style="display: inline;">
+                        </a>
+                        <a href="{% url 'article:details' second.id %}" target="_blank" title="{{ second.title }}">
+                            <div class="big2-pic-content">
+                                <h2 class="t-h1">{{ second.title }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if third %}
+                    <div class="big2-pic big2-pic-index big2-pic-index-bottom">
+                        <a href="{% url 'article:details' third.id %}" class="back-img transition" target="_blank"
+                           title="{{ third.title }}">
+                            <img class="lazy"
+                                 data-original="{{ third.cover_url }}?imageView2/1/w/257/h/195/|imageMogr2/strip/interlace/1/quality/85/format/jpg"
+                                 alt="{{ third.title }}" src="{{ third.cover_url }}"
+                                 style="display: inline;">
+                        </a>
+                        <a href="{% url 'article:details' third.id %}" target="_blank"
+                           title="{{ third.title }}">
+                            <div class="big2-pic-content">
+                                <h2 class="t-h1">{{ third.title }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% include "article_part.html" %}
+        {% if article_list.count %}
+            <div class="get-mod-more js-get-mod-more-list transition" data-cur_page="1" data-last_dateline="1483625220">
+                点击加载更多
+            </div>
+        {% endif %}
+        </div>
+        <div class="wrap-right pull-right">
+            {% story_center %}
+             {% hot_tags %}
+            <div class="placeholder"></div>
+
+            {% hot_articles %}
+        </div>
+    </div>
+{% endblock %}

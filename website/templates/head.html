@@ -1,0 +1,90 @@
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/build.css">
+<link rel="stylesheet" type="text/css" href="/static/css/right.css">
+<link rel="stylesheet" type="text/css" href="/static/css/login.css">
+<link rel="stylesheet" type="text/css" href="/static/css/vip-icon.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nanoscroller.css">
+<link rel="stylesheet" type="text/css" href="/static/css/cy.css">
+<link rel="stylesheet" type="text/css" href="/static/css/o.css">
+<style>
+.modal-backdrop{
+    z-index: -1;
+}
+</style>
+<!--[if lt IE 9]>
+<script src="https://statics.huxiu.com/w/mini/static_2015/js/respond.min.js?v=201512091410"></script>
+<script src="https://statics.huxiu.com/w/mini/static_2015/js/html5shiv.min.js?v=201512091410"></script>
+<![endif]-->
+
+<link rel="apple-touch-icon" sizes="76x76"
+      href="https://statics.huxiu.com/w/mini/static_2015/img/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="120x120"
+      href="https://statics.huxiu.com/w/mini/static_2015/img/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="152x152"
+      href="https://statics.huxiu.com/w/mini/static_2015/img/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180"
+      href="https://statics.huxiu.com/w/mini/static_2015/img/apple-touch-icon-180x180.png">
+
+<!-- 用户行为分析  https://sensorsdata.cn/index.html -->
+{#<script async="" src="/static/js/sensorsdata.sdk.js"></script>#}
+{#<script src="/static/js/push.js"></script>#}
+{#<script async="" src="/static/js/analytics.js"></script>#}
+{#<script src="/static/js/hm.js"></script>#}
+
+<script>
+    var uid='{{ uid }}';
+    var is_vip='';
+    var huxiu_hash_code='9fb83ea7d640b1cf2769daff4a649182';
+    var aid='{{ aid }}';
+
+    var itemId = '-1';
+    var signAna = '24df31fa2a4423d7288d6653fae31fab02189720';
+    var signTime = '1484186835';
+    var productId = '16';
+    var channel = 'huxiu';
+
+    var relatedArticle = '';
+    var url=window.location.href;
+    var str1=new RegExp('rec=man');
+    var str2=new RegExp('rec=sim');
+    if(str1.test(url)){
+        relatedArticle = 'manual';
+    } else if (str2.test(url)) {
+        relatedArticle = 'similar';
+    }
+
+    var cookiepre='HUXIU_016a_';
+    var _hmt = _hmt || [];
+    _hmt.push(['_setAccount', '324368ef52596457d064ca5db8c6618e']);
+    var isLogin = "{% if request.user.id %}isLogin{% else %}noLogin{% endif %}" ;
+    _hmt.push(['_setCustomVar', 1, 'login', isLogin, 2]);
+</script>
+{##}
+{#<script>#}
+{#    var uid = '1572518';#}
+{#    var is_vip = '';#}
+{#    var huxiu_hash_code = '76c73271b1ec836a885c8bd10b96f7c0';#}
+{#    var aid = 0;#}
+{##}
+{#    var itemId = '-1';#}
+{#    var signAna = '5a17db3e0e5dc4b103c4027b92a64c36e7ddb34d';#}
+{#    var signTime = '1483751640';#}
+{#    var productId = '16';#}
+{#    var channel = 'huxiu';#}
+{##}
+{#    var relatedArticle = '';#}
+{#    var url = window.location.href;#}
+{#    var str1 = new RegExp('rec=man');#}
+{#    var str2 = new RegExp('rec=sim');#}
+{#    if (str1.test(url)) {#}
+{#        relatedArticle = 'manual';#}
+{#    } else if (str2.test(url)) {#}
+{#        relatedArticle = 'similar';#}
+{#    }#}
+{##}
+{#    var cookiepre = 'HUXIU_016a_';#}
+{#    var _hmt = _hmt || [];#}
+{#    _hmt.push(['_setAccount', '324368ef52596457d064ca5db8c6618e']);#}
+{#    var isLogin = "isLogin";#}
+{#    _hmt.push(['_setCustomVar', 1, 'login', isLogin, 2]);#}
+{#</script>#}

@@ -1,0 +1,8 @@
+{% extends 'center_base.html' %}
+
+{% block user-nav-box %}
+    <ul class="nav-box">
+        <li class="{{ cl_post }}"><a href="{% url 'member:post' user.id %}#menu">评论（{{ comments_count }}）</a></li>
+        <li class="{{ cl_postcomment }}"><a href="{% url 'member:postcomment' user.id %}#menu">点评（{{ postcomments_count }}）</a></li>
+    </ul>
+{% endblock %}

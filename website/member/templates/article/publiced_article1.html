@@ -1,0 +1,29 @@
+{% extends 'article/_article.html' %}
+
+{% block user-nav-box %}
+{% endblock %}
+
+{% block message-box %}
+
+    <div class="message-box">
+        {% for object in object_list %}
+            <div class="mod-b mod-art " data-aid="{{ object.id }}">
+                <a class="transition" href="{% url 'article:details' object.id %}?f=member_article" target="_blank">
+                    <div class="mod-thumb">
+                        <img class="lazy"
+                             data-original="{{ object.cover_url }}"
+                             alt="{{ object.title }}" style="display: inline;"
+                             src="{{ object.cover_url }}">
+                    </div>
+                </a>
+                <div class="mob-ctt">
+                    <h3><a href="{% url 'article:details' object.id %}?f=member_article" class="transition" target="_blank">{{ object.title }}</a>
+                    </h3>
+                    <div class="mob-author"><span class="time">{{ object.publish_at }}</span></div>
+                    <div class="mob-sub">{{ object.description }}</div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

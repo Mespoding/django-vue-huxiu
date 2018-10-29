@@ -1,0 +1,12 @@
+{% extends 'center_base.html' %}
+
+{% block user-nav-box %}
+    <ul class="nav-box">
+        <li class="{{ cl_message }}"><a href="{% url 'member:message' user.id %}#menu">评论回复<span
+                class="badge comment_message"></span></a></li>
+{#        <li class="{{ cl_systemnotice }}"><a href="{% url 'member:systemnotice' user.id %}#menu">系统消息<span#}
+{#                class="badge system_message"></span></a></li>#}
+        <li class="{{ cl_privatemsg }}"><a href="{% url 'member:privatemsg' user.id %}#menu">私信<span
+                class="badge private_message"></span></a></li>
+    </ul>
+{% endblock %}

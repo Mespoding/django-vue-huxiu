@@ -1,0 +1,20 @@
+{% extends "about/about_base.html" %}
+
+{% block css %}
+    <style>
+        .about-us-box img {
+            width: 100px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block about_name %}
+    关于我们
+{% endblock %}
+
+{% block about_content %}
+    <div class="">
+        {{ object.content|safe }}
+    </div>
+{% endblock %}

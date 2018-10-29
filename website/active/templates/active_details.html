@@ -1,0 +1,713 @@
+{% load article_filter %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{{ active.title }}</title>
+    <link type="text/css" rel="stylesheet" href="/static/ifeng_files/basic_new_v2.css" media="screen">
+    <link type="text/css" rel="stylesheet" href="/static/ifeng_files/css.css" media="screen">
+    <meta http-equiv="x-ua-compatible" content="ie=emulateie7">
+    <script src="/static/ifeng_files/BX.1.0.1.U.js"></script>
+    <script src="/static/ifeng_files/ifeng_common_v1.js"></script>
+    <script src="/static/ifeng_files/jquery-1.9.1.min.js"></script>
+    <script src="/static/ifeng_files/base-core_5664eba4.min.js"></script>
+    <script>
+        var j = jQuery.noConflict();
+    </script>
+    <script type="text/javascript" src="/static/ifeng_files/i.drag.js"></script>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .duilian {
+            bottom: 70px;
+            position: fixed;
+            width: 120px;
+            overflow: hidden;
+        }
+
+        .duilian_left {
+            left: 6px;
+        }
+
+        .duilian_right {
+            right: 6px;
+        }
+
+        .duilian_con {
+            width: 120px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer
+        }
+
+        .duilian_close {
+            width: 60px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            float: right;
+            display: block;
+            font-size: 13px;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        a.duilian_close {
+            color: #fff
+        }
+
+        .tabViewList {
+            width: 566px;
+            height: 296px;
+            overflow: hidden
+        }
+
+        .fpic {
+            width: 566px;
+            float: left;
+            height: 296px;
+            position: relative
+        }
+
+        .fpic ul.fp_ul li {
+            position: absolute;
+        }
+
+        .bigPic {
+            height: 296px
+        }
+
+        .bigPic a img {
+            display: block;
+            height: 296px;
+            width: 566px;
+            overflow: hidden
+        }
+
+        .bigPic .text span {
+            float: right;
+            color: #ccc;
+            background: url(http://res.img.ifeng.com/8cbe73a7378dafdb/2011/0615/i_hd.gif) no-repeat 0 6px;
+            padding-left: 17px
+        }
+
+        .fpic .text {
+            width: 566px;
+            height: 80px;
+            background: #ffffff;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            filter: alpha(opacity=60);
+            opacity: 0.6
+        }
+
+        .fpic .tword {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            width: 566px;
+            height: 63px;
+            padding-top: 17px
+        }
+
+        .fpic h1 {
+            font-size: 24px;
+            text-align: left;
+            text-indent: 24px;
+            font-weight: bold;
+            line-height: 28px;
+            font-family: Microsoft YaHei;
+        }
+
+        .fpic h1 a {
+            color: #2b2b2b
+        }
+
+        .fpic p {
+            text-align: left;
+            text-indent: 24px;
+            line-height: 23px;
+            padding-top: 5px;
+        }
+
+        .fpic p a {
+            font-size: 14px;
+            font-family: Microsoft YaHei;
+            color: #2b2b2b;
+        }
+
+        #prevSlide,
+        #nextSlide {
+            width: 39px;
+            height: 46px;
+            position: absolute;
+            top: 150px;
+            left: 20px;
+            z-index: 10;
+            cursor: pointer;
+            width: 20px;
+            height: 33px;
+        }
+
+        .imgHover {
+            filter: alpha(opacity=70);
+            -moz-opacity: 0.7;
+            opacity: 0.7
+        }
+
+        #prevSlide {
+            background: url(http://y2.ifengimg.com/9db17ab793eef980/2013/0423/btnLeft.v4.png) no-repeat;
+            _background: none;
+            _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://y2.ifengimg.com/9db17ab793eef980/2013/0423/btnLeft.v4.png");
+        }
+
+        #nextSlide {
+            left: 528px;
+            background: url(http://y2.ifengimg.com/9db17ab793eef980/2013/0423/btnRight.v4.png) no-repeat;
+            _background: none;
+            _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://y2.ifengimg.com/9db17ab793eef980/2013/0423/btnRight.v4.png");
+        }
+
+        .dotList {
+            position: absolute;
+            right: 24px;
+            top: 273px;
+            height: 30px;
+            z-index: 999
+        }
+
+        .dotList li {
+            float: left;
+            width: 11px;
+            height: 11px;
+            margin: 0 0 0 10px;
+            display: block;
+            cursor: pointer;
+            background: url(http://y2.ifengimg.com/9db17ab793eef980/2013/0423/s_65.png) no-repeat;
+            overflow: hidden;
+            _background: none;
+            _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://y2.ifengimg.com/9db17ab793eef980/2013/0423/s_65.png")
+        }
+
+        .t_box {
+            height: 60px;
+            width: 100%;
+            font-size: x-large;
+            color: #007AE6;
+            vertical-align: middle;
+            font-weight: 900;
+        }
+
+        .dotList li.current {
+            background: url(http://y2.ifengimg.com/9db17ab793eef980/2013/0423/s_66.png) no-repeat;
+            _background: none;
+            _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://y2.ifengimg.com/9db17ab793eef980/2013/0423/s_66.png")
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery#1.8.1"
+            src="/static/ifeng_files/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_"
+            data-requiremodule="F_comment_new#1.2.3"
+            src="/static/ifeng_files/detail_depmodules_pc_9cec1d30.min.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_"
+            data-requiremodule="artTemplate#3.0.3" src="/static/ifeng_files/detail_depmodules_07b1b7a3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="public_login"
+            src="/static/ifeng_files/public_login.min.js"></script>
+    <style id="style-1-cropbar-clipper">
+        .en-markup-crop-options {
+            top: 18px !important;
+            left: 50% !important;
+            margin-left: -100px !important;
+            width: 200px !important;
+            border: 2px rgba(255, 255, 255, .38) solid !important;
+            border-radius: 4px !important;
+        }
+
+        .en-markup-crop-options div div:first-of-type {
+            margin-left: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+<script id="script_1488121071615_0" src="/static/ifeng_files/page.js"></script>
+<script src="/static/ifeng_files/fa.min.js"></script>
+
+
+<style>
+    body {
+        background: url({{ active.backgroud_url }}) no-repeat center top;
+    }
+</style>
+<script>
+    document.title = "{{ active.title }}"
+</script>
+<div class="block block_00">
+    <div class="content">
+        <div class="nav">
+            <ul>
+                <li style="width:140px;margin:0" class=""><a href="#ghsd">活动头条</a>
+                </li>
+                <li class="sel"><a href="#ghsd">焦点时刻</a></li>
+                <li style="width:138px;margin:0"><a href="#fyjp">酒评</a></li>
+                <li><a href="#fhzf">现场互动</a></li>
+                <li><a href="#xctj">现场图集</a></li>
+                <li style="width:128px;margin:0"><a href="#tcsk">时刻表</a></li>
+                <li><a href="#tyhz">特邀合作</a></li>
+            </ul>
+            <a href="{{ active.guanggao_href }}" title="{{ active.guanggao_title }}" target="_blank"><img
+                    src="{{ active.guanggao_pic.url }}" width="1000" height="90"></a>
+        </div>
+    </div>
+</div>
+<div class="block block_01">
+    <div class="content">
+        <div class="clear" style="height:22px;"></div>
+        <div class="w400">
+            <div class="t_box">活动头条</div>
+            <a href="{% url "article:list" huodong.category_id %}" target="_blank" class="mor">更多&gt;&gt;</a>
+            {% for object in huodong.objects %}
+                <div class="box_01">
+                    <h2><strong><a href="{% url "article:details" object.id %}">{{ object.title }}</a></strong>
+                    </h2>
+                    <div class="box_01_1">
+                        {{ object.description|short_string:60 }}
+                        <a href="{% url "article:details" object.id %}" target="_blank">[详细]</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="w568">
+            <div class="t_box">焦点时刻</div>
+            <a href="{% url "article:list" jiaodian.category_id %}" target="_blank" class="mor">更多&gt;&gt;</a>
+            <div class="tabViewList clearfix">
+                <div class="fpic" id="jqpfoc">
+                    <ul class="fp_ul" id="bigpic003">
+                        {% for object in jiaodian.objects %}
+                            <li class="bigpic03"
+                                style="display: {% if forloop0.first %}block{% else %}none{% endif %};">
+                                <div id="fpic_1" class="bigPic">
+                                    <a href="{% url "article:details" object.id %}" target="_blank"> <img
+                                            src="{{ object.cover_url }}" width="650" height="390"
+                                            alt="{{ object.title }}”" title="{{ object.title }}"> </a>
+                                    <div class="text"></div>
+                                    <div class="tword">
+                                        <h1><a href="{% url "article:details" object.id %}"
+                                               target="_blank">{{ object.title }}”</a>
+                                        </h1>
+
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="dotList" id="controlSlide_01">
+                        {% for object in jiaodian.objects %}
+                            <li class="{% if forloop0.first %}current{% else %}{% endif %};"></li>
+                        {% endfor %}
+                    </ul>
+                    <div id="prevSlide">
+                        <a><img src="/static/ifeng_files/link.gif" width="20" height="33" class="imgHover"></a>
+                    </div>
+                    <div id="nextSlide">
+                        <a><img src="/static/ifeng_files/link.gif" width="20" height="33" class="imgHover"></a>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var slidesLi = getElementsByClassName($("#bigpic003"), "li", "bigpic03");
+                var slidelength = slidesLi.length;
+                var adLi = slidesLi[slidelength - 1];
+                var adIsAdd = adLi.getAttribute("id") ? parseInt(adLi.getAttribute("id").replace("slide_ad_", "")) : null;
+                if (adIsAdd && adIsAdd < slidelength) { //replace
+                    $("#bigpic003").replaceChild(adLi, slidesLi[adIsAdd - 1]);
+                    --slidelength;
+                }
+                var lis = "";
+                for (var i = 0; i < slidelength; i++) {
+                    lis = lis + "<li></li>";
+                }
+                $("controlSlide_01").innerHTML = lis;
+            </script>
+            <script>
+                var jqpfoc = j("#jqpfoc");
+                var jqnsp = jqpfoc.find("ul:first");
+                var jqnrbt = jqpfoc.find("ul:last");
+                var l_btn = j("#prevSlide img");
+                var r_btn = j("#nextSlide img");
+                var len = jqnsp.find("li").length;
+                var nmyTime = 0;
+                var nsig = 0;
+                jqnrbt.find("li:first").addClass("current");
+                jqnrbt.find("li").each(function (x02) {
+                    j(this).mouseover(function () {
+                        jqnsp.find("li").eq(x02).stop(true, true).find("img").fadeIn("2000").end().show().siblings().hide();
+                        j(this).addClass("current").siblings().removeClass("current");
+                        nsig = x02;
+                        //alert(nsig)
+                    })
+                });
+                //jqnrbt.find("li:first").mouseover();
+                if (len == 6 && "undefined" != typeof luckyDay6First && luckyDay6First == true) { //用于焦点图从第一帧开始正常显示
+                    jqnrbt.find("li:last").mouseover();
+                } else {
+                    jqnrbt.find("li:first").mouseover();
+                }
+                l_btn.click(function () {
+                    nsig--;
+                    if (nsig < 0) {
+                        nsig = len - 1;
+                        jqnsp.find("li").eq(nsig).stop(true, true).find("img").fadeIn("2000").end().show().siblings().hide();
+                        jqnrbt.find("li").eq(nsig).addClass("current").siblings().removeClass("current");
+                    } else {
+                        jqnsp.find("li").eq(nsig).stop(true, true).find("img").fadeIn("2000").end().show().siblings().hide();
+                        jqnrbt.find("li").eq(nsig).addClass("current").siblings().removeClass("current");
+                    }
+                })
+                r_btn.click(function () {
+                    nsig++;
+                    if (nsig == len) {
+                        nsig = 0;
+                        jqnsp.find("li").eq(nsig).stop(true, true).find("img").fadeIn("2000").end().show().siblings().hide();
+                        jqnrbt.find("li").eq(nsig).addClass("current").siblings().removeClass("current");
+                    } else {
+                        jqnsp.find("li").eq(nsig).stop(true, true).find("img").fadeIn("2000").end().show().siblings().hide();
+                        jqnrbt.find("li").eq(nsig).addClass("current").siblings().removeClass("current");
+                    }
+                })
+            </script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="block block_03">
+    <a name="fyjp" id="fyjp"></a>
+    <div class="content">
+        <div class="clear"></div>
+        <a name="fhzf" id="fhzf"></a>
+        <div class="w400">
+            <div class="t_box">云酒酒评</div>
+            <a href="{% url "article:list" yunjiu.category_id %}" target="_blank" class="mor">更多&gt;&gt;</a>
+            {% for object in yunjiu.objects %}
+                <div class="box_01">
+                    <h2><strong><a href="{% url "article:details" object.id %}">{{ object.title }}</a></strong>
+                    </h2>
+                    <div class="box_01_1">
+                        {{ object.description|short_string:60 }}
+                        <a href="{% url "article:details" object.id %}" target="_blank">[详细]</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="w568">
+            <div class="t_box">现场互动</div>
+            <a href="{% url "article:list" hudong.category_id %}" target="_blank" class="mor">更多&gt;&gt;</a>
+            <div class="b_box">
+                {% for object in hudong.objects %}
+                    <dl class="p2-2">
+                        <dt>
+                            <a href="{% url "article:details" object.id %}" target="_blank">
+                                <img src="{{ object.cover_url }}" width="100%"> </a>
+                        </dt>
+                        <dd>
+                            <h2><a href="{% url "article:details" object.id %}"
+                                   target="_blank">{{ object.title|short_string:10 }}</a>
+                            </h2>
+                            {{ object.description|short_string:100 }}
+                            <a href="{% url "article:details" object.id %}" target="_blank">[详细]</a>
+                        </dd>
+                    </dl>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="block block_04">
+    <div class="content">
+        <a name="xctj" id="xctj"></a>
+        <div class="w620">
+            <div class="t_box">现场图集</div>
+            <a href="{% url "article:list" tuji.category_id %}" target="_blank"
+               class="mor">更多&gt;&gt;</a>
+            <div class="imageShow" id="imageShow">
+                <div class="imgCon">
+                    <a href="http://jiu.ifeng.com/a/20160319/41565158_1.shtml" target="_blank"><img
+                            src="/static/ifeng_files/45918caec1ade6f.jpg" width="620" height="290"></a>
+                </div>
+                <div class="img_text01">
+                    <a href="http://jiu.ifeng.com/a/20160319/41565158_1.shtml" target="_blank">国际范、中国范，2016中国国际酒业博览会盛大开幕，国际酒业和中国白酒的大咖来了不少，你认识几位？</a>
+                </div>
+            </div>
+            <div class="imgPage" id="imgPage">
+                <div class="b_prev"></div>
+                <ul>
+                    {% for object in tuji.objects %}
+                        <li class="{% if forloop.first %}
+                    sel{% else %}
+                    {% endif %}">{{ forloop.counter }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="b_next"></div>
+            </div>
+        </div>
+        <div class="w342">
+            <div class="t_box">干货速递</div>
+            <a href="{% url "article:list" ganhuo.category_id %}" target="_blank"
+               class="mor">更多&gt;&gt;</a>
+            <ul class="ul_list_1">
+                {% for object in ganhuo.objects %}
+                    <li><a href="{% url "article:details" object.id %}" target="_blank">
+                        {{ object.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <ul class="ul_list_2">
+            {% for foo in middle.objects %}
+                <li>
+                    <a href="http://jiu.ifeng.com/a/20160328/41586667_0.shtml#p=1"><img
+                            src="/static/ifeng_files/50578fe31042cd2.jpg" width="192" height="219">
+                        <h2> 最是那一低头的温柔</h2>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <style>
+            .block_04 {
+                height: auto;
+            }
+
+            .ul_list_2 {
+                overflow: hidden;
+            }
+
+            .ul_list_2 li {
+                margin-right: 5px;
+            }
+        </style>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="block block_05">
+    <div class="content">
+        <a name="tcsk" id="tcsk"></a>
+        <div class="t_box">时刻表</div>
+        <div class="boxscroll">
+            <div id="scrollcon_01" class="scrollcon_01">
+                <div class="scrollText" id="scrollText_01">
+                    <img src="{{ active.time_table_url }}" width="100%" height="100%">
+                </div>
+                <div class="scrollcon">
+                    <div class="scrollbarmask" id="scrollbarMask_01" style="position: relative;">
+                        <div class="scrollbar" id="scrollbar_01" style="position: absolute;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block_06" style="height:300px;">
+    <div class="content">
+        <a name="tyhz" id="tyhz"></a>
+        {% for foo in active.at_links.all %}
+            <a href="{{ foo.href }}" target="_blank">
+                <img src="{{ foo.cover_url }}" width="140" height="140" border="1">
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="weixin" id="gzwx">
+    <a href="/static/img/weixin_erweima.png" target="_blank">
+        <img src="/static/img/weixin_erweima.png" width="128" height="128"></a>
+</div>
+<script type="text/javascript" src="/static/ifeng_files/jquery.easing.1.3.js"></script>
+<script>
+    {#    var Redflag;#}
+    var Redflag = {
+        //高清图集数据
+        imageData: [
+        ]
+    }
+
+    var imagePageCur = 0;
+    j(document).ready(function () {
+        $.getJSON("/active/pics/?active_id={{ active.id }}", "", function (data) {
+            console.log(data);
+            Redflag = data;
+        });
+        j("#imgPage li").click(function () {
+            var num = j(this).text();
+            imagePageCur = num - 1;
+            imageShow();
+        });
+        j("#imgPage .b_prev").click(function () {
+            if (imagePageCur > 0) {
+                imagePageCur--;
+            } else {
+                imagePageCur = Redflag.imageData.length - 1;
+            }
+            imageShow();
+        });
+        j("#imgPage .b_next").click(function () {
+            if (imagePageCur < Redflag.imageData.length - 1) {
+                imagePageCur++;
+            } else {
+                imagePageCur = 0;
+            }
+            imageShow();
+        });
+
+
+        j('.nav li').click(function () {
+            j('.nav li').removeClass('sel');
+            j(this).addClass('sel');
+        });
+
+
+    });
+
+    function imageShow() {
+        j("#imageShow .img_text01").html('<a href="' + Redflag.imageData[imagePageCur][2] + '" target="_blank">' +
+                Redflag.imageData[imagePageCur][0] + '</a>');
+        j("#imageShow .imgCon").html('<a href="' + Redflag.imageData[imagePageCur][2] +
+                '" target="_blank"><img src="' + Redflag.imageData[imagePageCur][1] + '"></a>');
+        j("#imgPage li").attr('class', '');
+        j(j("#imgPage li")[imagePageCur]).attr('class', 'sel');
+    }
+
+
+    function picScroll1(ID, scrnum, atime, animateDirection, asnum) {
+        this.id = ID;
+        var id = j("#" + this.id);
+        var prevObj = j(id).find(".prev");
+        var nextObj = j(id).find(".next");
+        var ulLength = Math.ceil(j(id).find("li").length / 3);
+        var picScrollIndex = 0;
+        var isPicScrollRun = true;
+        var vask = j(id).find("ul");
+        this.init = function () {
+            if (ulLength <= asnum) {
+                j(nextObj).animate({
+                    opacity: 0.5
+                }, 100);
+                j(prevObj).animate({
+                    opacity: 0.5
+                }, 100);
+            }
+            j(nextObj).click(function () {
+                if (!isPicScrollRun)
+                    return;
+                picScrollIndex++;
+                if (picScrollIndex > ulLength - asnum)
+                    picScrollIndex = 0;
+                picScrollSlide(picScrollIndex);
+            });
+            j(prevObj).click(function () {
+                if (!isPicScrollRun)
+                    return;
+                picScrollIndex--;
+                if (picScrollIndex < 0)
+                    picScrollIndex = ulLength - asnum;
+                picScrollSlide(picScrollIndex);
+            });
+        }
+
+        function picScrollSlide(picScrollIndex) {
+            //isPicScrollRun = false;
+            var animateoption
+            if (animateDirection == 'X') {
+                animateoption = {
+                    marginLeft: picScrollIndex * -scrnum
+                }
+            } else {
+                animateoption = {
+                    marginTop: picScrollIndex * -scrnum
+                }
+            }
+            j(vask).stop();
+            j(vask).animate(animateoption, atime, 'easeOutBack', function () {
+                isPicScrollRun = true;
+            });
+        }
+
+        this.init()
+    }
+    picScroll1('vtroll_0', 480, 600, 'X', 1);
+
+
+    new dragFunction('scrollbar_01', 'scrollbarMask_01', 'scrollText_01', 'scrollcon_01');
+</script>
+
+
+<script>
+    var sta_collection_time = new Date().getTime();
+</script>
+<div id="sta_collection" style="bottom: 0px; left: 0px; position: absolute;">
+    <embed id="ifengSwf_1488121068606" name="ifengSwf_1488121068606" width="1" height="1"
+           src="http://y1.ifengimg.com/20150127/flashCookieInterface.swf"
+           type="application/x-shockwave-flash" allowscriptaccess="always">
+</div>
+<script id="sta_collection_new">
+    window.analytics(encodeURIComponent(window.location.href)); //页面统计，必填
+    setTimeout(function () {
+        window.aptracker.collection(); //广告统计，必填
+        window.remain(); //停留时长统计，选填
+    }, 800);
+</script>
+<!-- 页尾通栏  -->
+<script aria-hidden="true" type="application/x-lastpass" id="hiddenlpsubmitdiv" style="display: none;"></script>
+<script>
+    try {
+        (function () {
+            for (var lastpass_iter = 0; lastpass_iter < document.forms.length; lastpass_iter++) {
+                var lastpass_f = document.forms[lastpass_iter];
+                if (typeof (lastpass_f.lpsubmitorig2) == "undefined") {
+                    lastpass_f.lpsubmitorig2 = lastpass_f.submit;
+                    if (typeof (lastpass_f.lpsubmitorig2) == 'object') {
+                        continue;
+                    }
+                    lastpass_f.submit = function () {
+                        var form = this;
+                        var customEvent = document.createEvent("Event");
+                        customEvent.initEvent("lpCustomEvent", true, true);
+                        var d = document.getElementById("hiddenlpsubmitdiv");
+                        if (d) {
+                            for (var i = 0; i < document.forms.length; i++) {
+                                if (document.forms[i] == form) {
+                                    if (typeof (d.innerText) != 'undefined') {
+                                        d.innerText = i.toString();
+                                    } else {
+                                        d.textContent = i.toString();
+                                    }
+                                }
+                            }
+                            d.dispatchEvent(customEvent);
+                        }
+                        form.lpsubmitorig2();
+                    }
+                }
+            }
+        })()
+    } catch (e) {
+    }
+</script>
+</body>
+
+</html>

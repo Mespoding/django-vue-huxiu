@@ -1,0 +1,57 @@
+{% load article_tags %}
+<header id="top" role="banner" class="transition">
+    <div class="container">
+        <div class="navbar-header transition">
+            <a href="/" title="首页">
+                <img src="/static/img/logo.jpg" alt="云酒网" title="首页">
+            </a>
+        </div>
+        {% navbar %}
+
+        <ul class="nav navbar-nav navbar-right transition">
+{#            <li class="app-guide js-app-guide">#}
+{#                <div class="app-guide-box">#}
+{#                    <img src="/static/img/weixin_erweima.png">#}
+{#                    <div class="app-guide-title">#}
+{#                        <span>微信扫一扫</span><br>#}
+{#                        <span>关注云酒公众号</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <i class="icon icon-sm-phone"></i>公众号<em class="guide-prompt"></em>#}
+{#            </li>#}
+{#        <li><a href="{% url "social:begin" "weibo" %}" target="_blank">Sina</a></li>#}
+{#        <li><a href="{% url "social:begin" "weixin" %}" target="_blank">Weixin</a></li>#}
+            <li class="search-li js-show-search-box"><i class="icon icon-search "></i><span>搜索</span></li>
+            {% if not request.user.id %}
+                <li class="login-link-box"><a class="js-login">登录</a></li>
+                <li><a class="js-register">注册</a></li>
+            {% else %}
+                <li class="user-head js-show-menu">
+                    <div class="header-column header-column-user menu-box" onmouseover="isOut=false"
+                         onmouseout="isOut=true">
+                        {% if user.is_staff %}
+                        <a href="{% url 'admin:index' %}" class="transition" target="_blank">管理后台</a>
+                        {% endif %}
+                        <a href="{% url 'member:index' request.user.id %}" class="transition">个人中心</a>
+                        <a href="{% url 'member:article' request.user.id %}#menu" name="menu" class="transition">我的文章</a>
+                        <a href="{% url 'member:message'  request.user.id %}#menu" name="menu" class="transition">评论回复<span
+                                class="badge comment_message"></span></a>
+{#                        <a href="{% url 'member:systemnotice'  request.user.id %}#menu" name="menu"#}
+{#                           class="transition">系统通知<span class="badge system_message"></span></a>#}
+                        <a href="{% url 'member:privatemsg' request.user.id %}#menu" class="transition">私信<span
+                                class="badge private_message"></span></a>
+                        <a href="javascript:void(0);" class="transition js-btn-logout">退出登录</a>
+                    </div>
+                    <a class="avatar transition">
+                        <span class="icon-s"></span>
+                        <img src="{{ request.user.avatar_url }}"><span class="caret"></span>
+                        <em class="message-num nums"></em>
+                    </a>
+                </li>
+            {% endif %}
+            <li><a class="js-open-contribute transition" target="_blank">投稿</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="placeholder-height"></div>

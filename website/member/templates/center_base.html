@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link charset="utf-8" rel="stylesheet" href="/static/css/jquery.jcrop.css">
+{% endblock %}
+
+{% block container %}
+    <script>
+        var page = 'member';
+    </script>
+
+    <div class="container per_center per_center_body" id="per_center">
+        {% if is_me %}
+            <div class="user-info-warp ">
+
+                <div class="user-head-box">
+                    <div class="user-face">
+                        <img src="{{ user.avatar_url }}">
+                    </div>
+                    <div class="user-name">
+                        {{ user.display_name }} <a href="{% url 'member:index' user.id %}" target="_blank"></a>
+                    </div>
+                    <div class="user-one">
+                        <span class="show-span show-yijuhua">
+                            <span class="show-span js-edit-one">{{ user.signature|default:'修改签名' }}</span>
+                        </span>
+                        <span class="hide-edit hide">
+                            <input class="" maxlength="15" value="" id="yijuhua" placeholder="一句话介绍"><br>
+                        </span>
+                        <span class="hide-edit js-save-one hide">保存</span>
+                        <span class="hide-edit hide js-edit-one">&nbsp;&nbsp;取消</span>
+                    </div>
+
+                    {#                <a href="https://www.huxiu.com/vip" class="btn btn-user-edit btn-huxiu-vip">开通会员</a>#}
+                </div>
+
+                <div class="user-info-box">
+                    <div class="col-lg-5">
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            公司：<span class="c2">{{ user.company }}</span></div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            职业：<span class="c2">{{ user.position }}</span></div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            邮箱：<span class="c2">{{ user.email }}</span></div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            微博：<span class="c2">{{ user.sina }}</span></div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            微信：<span class="c2">{{ user.wechat }}</span></div>
+                    </div>
+                    <div class="btn-box">
+                        <a href="{% url 'user:base' %}" class="btn btn-user-edit pull-right">修改基础资料</a>
+                        {#        <a href="javascript:" class="js-sea-more-info more-info">更多<span class="caret"></span></a>#}
+                    </div>
+                    {#    <div class="more-user-info-box grade-warp">#}
+                    {#        <span>年级：<i class="icon icon-level icon-grade00"></i></span><span>经验值：0</span>#}
+                    {#        <span>嗅豆：0枚</span>#}
+                    {#    </div>#}
+                </div>
+            </div>
+        {% else %}
+            <div class="user-info-warp">
+                <div class="user-head-box">
+                    <div class="user-face">
+                        <img src="{{ user.avatar_url }}">
+                    </div>
+                    <div class="user-name">
+                        {{ user.display_name }} <a href="/vip" target="_blank"></a>
+                    </div>
+                    <div class="user-one">{{ user.signature }}</div>
+                    {% if request.user.id %}
+                        <a href="javascript:" class="btn btn-messages js-btn-message-modal" uid="{{ user.id }}"
+                           name="{{ user.display_name }}">给TA发私信</a>
+                    {% endif %}
+                    <div class="admin-btn-warp">
+                    </div>
+                </div>
+                <div class="user-info-box">
+                    <div class="col-lg-5">
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            公司：{{ user.company }}
+                        </div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            职业：<span class="c2">{{ user.position }}</span></div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            邮箱：{{ user.email }}
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            微博：{{ user.sina }}
+                        </div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            微信：{{ user.wechat }}
+                        </div>
+                        <div class="user-info">
+                            <i class="icon icon-user-point"></i>
+                            注册时间：{{ user.date_joined }}
+                        </div>
+                    </div>
+                    {##}
+                    {#                    <div class="btn-box">#}
+                    {#                        <a href="javascript:" class="js-sea-more-info more-info pull-right active">收起<span#}
+                    {#                                class="caret"></span></a>#}
+                    {#                    </div>#}
+                    {#                    <div class="more-user-info-box" style="display: block;">#}
+                    {#                        <div class="col-lg-5">#}
+                    {#                            <div class="more-user-info">#}
+                    {#                                <i class="icon icon-user-point"></i>#}
+                    {#                                真实姓名：保密#}
+                    {#                            </div>#}
+                    {#                            <div class="more-user-info">#}
+                    {#                                <i class="icon icon-user-point"></i>#}
+                    {#                                手机：保密#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-lg-7">#}
+                    {#                            <div class="more-user-info">#}
+                    {#                                <i class="icon icon-user-point"></i>#}
+                    {#                                性别：保密#}
+                    {#                            </div>#}
+                    {#                            <div class="more-user-info">#}
+                    {#                                <i class="icon icon-user-point"></i>#}
+                    {#                                所在地址：保密#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {##}
+                    {#                    </div>#}
+                    {#                    <div class="more-user-info-box height_auto" style="margin-top: 0px; display: block;">#}
+                    {#                        <div class="more-user-info">#}
+                    {#                            <i class="icon icon-user-point"></i>#}
+                    {#                            注册时间：2016-06-23#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <div class="more-user-info-box grade-warp more-user-others" style="display: block;">#}
+                    {#                        <span>年级：<i class="icon icon-level icon-grade01"></i></span><span>经验值：84</span>#}
+                    {#                        <span>嗅豆：840枚</span>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+        {% endif %}
+
+        <div id="user_menu" name="menu"></div>
+
+        <div class="user-menu-warp">
+            {% if is_me %}
+                <div class="menu-warp ">
+                    <ul>
+                        <li class="{{ cl_message_base }}"><a href="{% url 'member:message' user.id %}#menu">我的消息</a>
+                        </li>
+                        <li class="{{ cl_article_base }}"><a href="{% url 'member:article' user.id %}#menu">我的文章</a>
+                        </li>
+                        <li class="{{ cl_post_base }}"><a href="{% url 'member:post' user.id %}#menu">我的评论</a></li>
+                        <li class="{{ cl_favorite_base }}"><a href="{% url 'member:favorite' user.id %}#menu">我的收藏</a>
+                        </li>
+                        {#            <li class="{{ cl_favorite_topic_base }}"><a href="{% url 'member:favorite_topic' user.id %}#menu">我的关注</a></li>#}
+                        {#            <li class="{{ cl_order_base }}"><a href="{% url 'member:order' user.id %}#menu">我的订单</a></li>#}
+                    </ul>
+                </div>
+            {% else %}
+                <div class="menu-warp ">
+                    <ul>
+                        <li class="{{ cl_article_base }}"><a href="{% url 'member:article' user.id %}#menu">ta的文章</a>
+                        </li>
+                        <li class="{{ cl_post_base }}"><a href="{% url 'member:post' user.id %}#menu">ta的评论</a></li>
+                        <li class="{{ cl_favorite_base }}"><a href="{% url 'member:favorite' user.id %}#menu">ta的收藏</a>
+                        </li>
+                        <li class="{{ cl_favorite_topic_base }}"><a
+                                href="{% url 'member:favorite_topic' user.id %}#menu">ta的关注</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="user-content-warp">
+                {% block user-content %}
+                    {% block user-nav-box %}
+
+                    {% endblock %}
+                    {% if object_list %}
+                        {% block message-box %}
+
+                        {% endblock %}
+
+                        <nav class="page-nav">
+                            <ul class="pagination">
+                                {% ifnotequal page_obj.number 1 %}
+                                    <li>
+                                        <a href="?page=1" aria-label="First"><span aria-hidden="true"><i
+                                                class="icon icon-first"></i></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="?page={{ page_obj.number|add:-1 }}" aria-label="Previous"><span
+                                                aria-hidden="true"><i
+                                                class="icon icon-lt"></i></span></a>
+                                    </li>
+                                {% endifnotequal %}
+
+                                {% for page_no in paginator.page_range %}
+                                    <li class="{% ifequal page_obj.number page_no %}active{% else %}{% endifequal %}">
+                                        <a href="?page={{ page_no }}">{{ page_no }}</a></li>
+                                {% endfor %}
+                                {% ifnotequal page_obj.number paginator.num_pages %}
+                                    <li><a href="?page={{ page_obj.number|add:1 }}"> <i class="icon icon-gt"></i></a>
+                                    </li>
+
+                                    <li><a href="?page={{ paginator.num_pages }}"><i class="icon icon-last"></i></a>
+                                    </li>
+                                {% endifnotequal %}
+                            </ul>
+                        </nav>
+
+                    {% else %}
+                        <div class="no-content-prompt">
+                            {% block no-content %}
+
+                            {% endblock %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

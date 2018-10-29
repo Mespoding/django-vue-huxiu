@@ -1,0 +1,2 @@
+INSERT INTO yunjiu.active_friend_link (created_at, updated_at, title, cover, active_id, href) VALUES ('2017-03-14 13:59:54.869754', '2017-03-14 15:40:59.716640', '贵州习酒', 'Snip20170314_1.png', 1, 'http://www.gzxijiu.cn/');
+INSERT INTO yunjiu.active_friend_link (created_at, updated_at, title, cover, active_id, href) VALUES ('2017-03-14 15:42:09.263643', '2017-03-14 15:42:09.263873', '茅台', 'Snip20170314_2.png', 1, 'http://www.china-moutai.com/');

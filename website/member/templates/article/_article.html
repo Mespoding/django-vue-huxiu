@@ -1,0 +1,15 @@
+{% extends 'center_base.html' %}
+
+{% block user-nav-box %}
+    <ul class="nav-box">
+
+        <li class="{{ cl_article }}"><a href="{% url 'member:article' user.id %}#menu">已发布（{{ published_count }})</a></li>
+        <li class="{{ cl_verify_article }}"><a href="{% url 'member:verify_article' user.id %}#menu">审核中（{{ verfify_count }})</a></li>
+        <li class="{{ cl_killed_article }}"><a href="{% url 'member:killed_article' user.id %}#menu">未通过（{{ killed_count }}）</a></li>
+        <li class="{{ cl_draft_article }}"><a href="{% url 'member:draft_article' user.id %}#menu">草稿箱（{{ draft_count }}）</a></li>
+    </ul>
+{% endblock %}
+
+{% block no-content %}
+    您还没有文章
+{% endblock %}

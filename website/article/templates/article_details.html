@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+{% load article_tags %}
+
+{% block title %}
+    {{ article.title }}-云酒网
+{% endblock %}
+
+{% block meta %}
+    <meta name="keywords" content="{{ article.tags.all }}">
+    <meta name="description" content="{{ article.description }}">
+    <meta content="{{ article.title }}" property="og:title">
+    <meta content="article" property="og:type">
+    <meta content="云酒网" property="og:site_name">
+    <meta content="{% url 'article:details' article.id %}" property="og:url">
+    <meta content="{{ article.cover_url }}" property="og:image">
+    <meta content="{{ article.description }}"
+          property="og:description">
+{% endblock %}
+
+{% block container %}
+    <div class="container" id="article">
+        <div class="nrtj-wrap"></div>
+        <input class="hide" id="related-article-wrap-hide" value="{{ article.id }}">
+
+        <div class="wrap-left pull-left" id="log-send-article">
+            <!--文章内容页-->
+            <div class="article-left-btn-group">
+                <ul>
+{#                    <li><a href=""><i#}
+{#                            class="icon icon-article icon-article-wb js-weibo js-share-article" data-location="article"#}
+{#                            data-f="pc-weibo-article" aid="{{ article.id }}"></i></a></li>#}
+                    <li class="weixin" data-f="pc-friends-article">
+                        <div class="weixin-Qr-code js-wx-Qr-code"><img
+                                src=""></div>
+                        <a class="js-weixin"><i class="icon icon-article icon-article-pyq"></i></a>
+                    </li>
+{#                    <li class="zhifubao" data-f="pc_alipay_article">#}
+{#                        <div class="zhifubao-Qr-code js-zhifubao-Qr-code"><img#}
+{#                                src=""></div>#}
+{#                        <a class="js-zhifubao"><i class="icon icon-article icon-article-zfb"></i></a>#}
+{#                    </li>#}
+{#                    <li><a href=""><i#}
+{#                            class="icon icon-article icon-article-qzone js-qzone js-share-article"#}
+{#                            data-location="article"#}
+{#                            data-f="pc-qzone-article" aid="{{ article.id }}"></i></a></li>#}
+                    <li><a class="js-article-pl-anchor"><i class="icon icon-article icon-article-pl">评论</i></a></li>
+                    <li><a class="js-collection-article"><i class="icon icon-article icon-article-col">收藏</i></a></li>
+                </ul>
+            </div>
+
+            <div class="article-wrap" id="related-article-wrap">
+                <h1 class="t-h1">{{ article.title }}</h1>
+                <div class="article-author">
+                    <a href="{% url 'article:list' article.category.id %}" class="column-link"
+                       target="_blank">{{ article.category.name }}</a>
+                    <span class="author-name">
+                        <a href="{% url 'member:index' article.creator_id %}"
+                           target="_blank">{{ article.display_author }}</a>
+
+                    </span>
+                    <i class="icon icon-line"></i>
+                    <span class="article-time">{{ article.publish_at }}</span>
+                    <span class="article-share">收藏{{ article.favorites_count }}</span>
+                    <span class="article-pl">评论{{ article.comments_count }}</span>
+                </div>
+
+                <div class="article-img-box">
+                    <img src="{{ article.cover_url }}"
+                         alt="{{ article.title }}">
+                </div>
+
+                <div id="article_content" class="article-content-wrap">
+                    {{ article.content|safe }}
+                    <div class="neirong-shouquan-public">
+                        <span>关注微信公众号云酒头条（YJTT2016），定时推送，福利互动精彩多</span>
+                    </div>
+                </div>
+
+                <div class="Qr-code">
+                    <div class="praise-box transition js-like-article center-box {% if i_like %}active{% endif %}"
+                         data-type="{% if i_like %}dislike{% else %}like{% endif %}">
+                        <div class="praise-box-add"><i class="icon icon-article-zan-add"></i><span>+1</span></div>
+                        <i class="icon icon-article-zan"></i><span class="num">{{ article.likes_count }}</span>
+                    </div>
+                </div>
+
+
+                <!--相关标签-->
+                <div class="tag-box ">
+                    <ul class="transition">
+                        {% for tag in article.tags.all %}
+                            <a href="{% url 'article:tag_list' tag.id %}" target="_blank">
+                                <li class="transition">{{ tag.name }}</li>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!--公共评论-->
+                <div class="pl-wrap" id="pl-wrap-article" name="pl-wrap-article">
+                    <div class="pl-form-wrap">
+                        <span class="span-mark-author active">发表评论</span>
+                        {% if not request.user.id %}
+                            <div class="pl-form-box pl-article-wrap">
+                                <div class="no-login-box ">
+                                    <a class="js-login">登录</a>后参与评论
+                                </div>
+                                <textarea class="form-control hide" placeholder="客官，8个字起评，不讲价哟"
+                                          style="resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 180px; width: 100%; line-height: 20px; text-decoration: none; letter-spacing: 0px;"
+                                          tabindex="-1"></textarea><textarea class="form-control hide" id="saytext"
+                                                                             name="saytext" placeholder="客官，8个字起评，不讲价哟"
+                                                                             style="resize: none; overflow-y: hidden;"></textarea>
+                                <button class="btn btn-article js-login transition">发表</button>
+                            </div>
+
+                        {% else %}
+                            <div class="pl-form-author">
+                                <div class="author-info">
+                                    <div class="author-face">
+                                        <span class="icon-b"></span>
+                                        <img src="{{ user.avatar_url }}">
+                                    </div>
+                                    <span class="author-name">{{ request.user.display_name }}</span>
+                                </div>
+                            </div>
+                            <div class="pl-form-box pl-article-wrap">
+                            <textarea class="form-control " placeholder="客官，8个字起评，不讲价哟"
+                                      style="resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 180px; width: 710px; line-height: 20px; text-decoration: none; letter-spacing: 0px;"
+                                      tabindex="-1"></textarea>
+                            <textarea class="form-control " id="saytext" name="saytext"
+                                      placeholder="客官，8个字起评，不讲价哟"
+                                      style="resize: none; overflow-y: hidden;"></textarea>
+                            <button class="btn btn-article js-article-pl transition ">发表</button>
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div id="pl-wrap" name="pl-wrap"></div>
+                    <a name="commment"></a>
+                    <div class="pl-list-wrap">
+                        {% for comment in article.root_comments %}
+                            <div class="pl-box-wrap  " data-pid="{{ comment.id }}" id="g_pid{{ comment.id }}">
+                                <!-- 评论  -->
+                                <div class="pl-box-top">
+                                    <div class="dropdown pull-right">
+                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            {% ifequal comment.creator.id user.id %}
+                                                <li class="js-delpl-btn" aid="{{ comment.id }}" pid="{{ comment.id }}">
+                                                    删除
+                                                </li>
+                                            {% else %}
+                                                <li class="pl-report js-report-pl" aid="{{ comment.article.id }}"
+                                                    pid="{{ comment.id }}">举报
+                                                </li>
+                                            {% endifequal %}
+                                        </ul>
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-face"><img
+                                                src="{{ comment.creator.avatar_url }}">
+                                        </div>
+                                        <span class="author-name">
+                                            <a href="{% url 'member:index' comment.creator_id %}"
+                                               target="_blank">{{ comment.creator.display_name }}</a>
+                        {#                    <a href="/vip" target="_blank"></a>#}
+                                        </span>
+                                        <span class="time">{{ comment.created_at }}</span>
+                                    </div>
+                                    <div class="pl-content">{{ comment.content|safe }}</div>
+
+
+                                    {% if comment.children %}
+
+                                        <div class="dp-box">
+                                            <span class="span-mark-author">点评</span>
+                                            <span class="span-mark-article-pl js-show-hide-dp-box"
+                                                  data-show="false">展开</span>
+                                            <!-- 头像列表 -->
+                                            <div class="dl-user dl-user-list js-show-hide-dp-box " data-type="dl-user"
+                                                 style="display:block">
+                                                <ul>
+                                                    {% for child in comment.children %}
+                                                        <li class="del-pl96140">
+                                                            <a href="/member/1360781.html" target="_blank">
+                                                                <img src="https://imgs.bipush.com/auth/data/avatar/1.jpg!150x150?|imageMogr2/strip/interlace/1/quality/85/format/jpg">
+                                                            </a>
+                                                            <span class="icon-s"></span>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+
+                                            <!-- 评论列表 -->
+                                            <div class="dp-list-box" style="display:none">
+                                                {% for child in comment.children %}
+
+                                                    <div class="dl-user del-pl{{ child.id }}">
+                                                        <ul>
+                                                            <li><a href="{% url 'member:index' child.creator.id %}"
+                                                                   target="_blank"><img
+                                                                    src="{{ child.creator.avatar_url }}?imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="one-pl-content">
+                                                            <div class="pull-right time">{{ child.created_at }}</div>
+                                                            <p class="content">
+                                                                <span class="name">{{ child.creator.display_name }}</span>
+                                                                {#                                                                <a href="/vip" target="_blank"></a>&nbsp;&nbsp;#}
+                                                                {% if child.at_id %}
+                                                                    回复
+                                                                    <a href="{% url 'member:index' child.at_id %}"
+                                                                       target="_blank">@{{ child.at.display_name }}</a>
+                                                                    :
+                                                                {% endif %}
+                                                                <span class="author-content">{{ child.content }}</span>
+                                                            </p>
+                                                            <div class="js-hf-article-pl"><span>回复</span></div>
+                                                            <div class="hu-pl-box">
+                                                        <textarea class="form-control"
+                                                                  placeholder="客官，8个字起评，不讲价哟"></textarea>
+                                                                <button class="btn btn-article js-article-dp"
+                                                                        data-type="hf">
+                                                                    发表
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                <div class="close-dp-list-box js-show-hide-dp-box" data-buttom="true">收起
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <!-- 评论操作（喜欢、不喜欢、点评）  -->
+                                <div class="pl-box-btm">
+                                    {#                                    <div class="article-type pull-right">#}
+                                    {#                                        <div class="icon-like-prompt">#}
+                                    {#                                            <i class="icon icon-like active"></i><span class="c1">+1</span>#}
+                                    {#                                        </div>#}
+                                    {#                                        <div class="icon-no-like-prompt">#}
+                                    {#                                            <i class="icon icon-no-like active"></i><span class="c1">+1</span>#}
+                                    {#                                        </div>#}
+                                    {#                                        <ul>#}
+                                    {#                                            <li class="js-icon-like" data-type="like"><i#}
+                                    {#                                                    class="icon icon-like "></i><span class="like">1</span>#}
+                                    {#                                            </li>#}
+                                    {#                                            <li class="js-no-icon-like" data-type="no-like"><i#}
+                                    {#                                                    class="icon icon-no-like "></i><span#}
+                                    {#                                                    class="like">0</span></li>#}
+                                    {#                                        </ul>#}
+                                    {#                                    </div>#}
+                                    <div class="btn-dp transition js-add-dp-box"><i class="icon icon-dp"></i>我要点评</div>
+                                    <div class="pl-form-box dp-article-box">
+                                        <textarea class="form-control" placeholder="客官，8个字起评，不讲价哟"></textarea>
+                                        <button class="btn btn-article js-article-dp">发表</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="get-mod-more js-get-pl-more-list transition" data-type="agree" data-cur_page="1">
+                        点击加载更多
+                    </div>
+                </div>
+
+                <!--相关文章-->
+                {#                <div class="interested-article-box">#}
+                {#                    <span class="span-mark-author">相关文章</span>#}
+                {#                    <div class="article-list-box">#}
+                {#                        <input type="hidden" id="relatedSourceType" value="manual">#}
+                {#                        <div class="article-box transition">#}
+                {#                            <a id="re_aid_168219" class="js-related-article" data-id="168219"#}
+                {#                               href="https://www.huxiu.com/article/168219.html" target="_blank">#}
+                {#                                <img src="/static/article_details_files/192701165398.jpg">#}
+                {#                            </a>#}
+                {#                            <div class="article-title">#}
+                {#                                <a class="js-related-article" data-id="168219"#}
+                {#                                   href="https://www.huxiu.com/article/168219.html"#}
+                {#                                   target="_blank">在语音识别这件事上，汉语比英语早一年超...</a>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {##}
+                {#                    </div>#}
+                {#                </div>#}
+            </div>
+        </div>
+
+        <div class="wrap-right pull-right">
+            <div class="box-author-info">
+                <div class="author-face">
+                    <a href="{% url 'member:index' article.creator.id %}"
+                       target="_blank">
+                        <img src="{{ article.creator.avatar_url }}">
+                    </a>
+                </div>
+                <div class="author-name">
+                    <a href="{% url 'member:index' article.creator.id %}"
+                       target="_blank">{{ article.display_author }}</a>
+                </div>
+            </div>
+
+            {% hot_tags %}
+            <div class="placeholder"></div>
+            {% hot_articles %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        {#        $(document).ready(function () {#}
+        {##}
+        {#            var relatedArcWrap = $('#related-article-wrap');#}
+        {#            var relatedArcWrapHide = $('#related-article-wrap-hide').val();#}
+        {#            $.ajax({#}
+        {#                url: '/acticle/relatedArticle/' + relatedArcWrapHide,#}
+        {#                type: 'get',#}
+        {#                dataType: 'json',#}
+        {#                async: true,#}
+        {#                success: function (data) {#}
+        {#                    if (data.success == true) {#}
+        {#                        relatedArcWrap.append(data.data.data);#}
+        {#                    }#}
+        {#                }#}
+        {#            });#}
+        {#        });#}
+        {#        #}
+        {#        $(document).on('mousedown', '.js-related-article', function () {#}
+        {#            var aid = $(this).attr('data-id');#}
+        {#            var relatedSourceType = $('#relatedSourceType').val();#}
+        {#            $(this).attr('href', '/article/' + aid + '.html?rec=' + relatedSourceType);#}
+        {##}
+        {#            if (relatedSourceType == 'manual') {#}
+        {#                $.myDetection.htmDetection('文章,相关文章手动,点击');#}
+        {#            } else if (relatedSourceType == 'similar') {#}
+        {#                $.myDetection.htmDetection('文章,相关文章机器自动,点击');#}
+        {#            }#}
+        {##}
+        {#        });#}
+    </script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load article_filter %}
+
+<!--文章列表-->
+<div class="mod-info-flow">
+    {% for article in article_list %}
+        <div data-aid="{{ article.id }}" class="mod-b mod-art ">
+            <div class="mod-thumb">
+                {% if article.is_hot %}
+                <div class="mod-angle">热</div>
+                {% endif %}
+                <a target="_blank" href="{% url 'article:details' article.id %}" class="transition">
+                    <img alt="{{ article.title }}"
+                         data-original="{{ article.cover_url }}?imageView2/1/w/220/h/165/|imageMogr2/strip/interlace/1/quality/85/format/jpg"
+                         class="lazy"
+                         style="display: inline;"
+                         src="{{ article.cover_url }}">
+                </a>
+            </div>
+
+            {% if show_category %}
+            <a target="_blank" class="column-link"
+               href="{% url 'article:list' article.category.id %}">{{ article.category.name }}</a>
+            {% endif %}
+
+            <div class="mob-ctt">
+                <h2><a target="_blank" class="transition msubstr-row2"
+                       href="{% url 'article:details' article.id %}">
+                    {{ article.title|short_string:25 }}</a>
+                </h2>
+                <div class="mob-author">
+                    <div class="author-face">
+                        <a href="{% url 'member:index' article.creator.id %}" target="_blank">
+                            <img src="{{ article.creator.avatar_url }}"></a>
+                    </div>
+                    <a href="{% url 'member:index' article.creator.id %}" target="_blank">
+                        <span class="author-name ">{{ article.display_author }}</span>
+                    </a>
+                     <span class="time">{{ article.publish_at }}</span>
+{#                    <i class="icon icon-cmt"></i><em>{{ article.comments_count }}</em>#}
+{#                    <i class="icon icon-fvr"></i><em>{{ article.favorites_count }}</em>#}
+                </div>
+                <!--外部文章/内部文章两者取其一-->
+                <div class="mob-sub">{{ article.description|short_string:100 }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

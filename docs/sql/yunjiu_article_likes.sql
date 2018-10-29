@@ -1,0 +1,1 @@
+INSERT INTO yunjiu.article_likes (article_id, user_id) VALUES (17, 1);

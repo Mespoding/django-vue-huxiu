@@ -1,0 +1,31 @@
+{% extends "about/about_base.html" %}
+
+{% block css %}
+    <style>
+
+        .feedback {
+            padding-bottom: 270px;
+        }
+
+        .conmain {
+            margin-left: 270px;
+            background: #fff;
+            padding: 0 30px;
+            width: 840px;
+        }
+    </style>
+{% endblock %}
+
+{% block about_name %}
+    用户反馈
+{% endblock %}
+
+{% block about_content %}
+    <div class="conmain feedback">
+        <h3><span>用户反馈<span></span></span></h3>
+        <p>亲爱的用户，您的意见与建议始终是我们最宝贵的财富。请点击下方<span class="myemail">我的邮箱</span>按钮邮件发给我们哦！</p>
+        <div class="backemail">
+            <a href="mailto:mu_zhennan@126.com">我的邮箱</a>
+        </div>
+        <p></p></div>
+{% endblock %}

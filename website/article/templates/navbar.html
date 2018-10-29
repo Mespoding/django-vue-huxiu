@@ -1,0 +1,7 @@
+<ul class="nav navbar-nav navbar-left">
+    {% for category in categories %}
+    <li class="nav-news"><a href="{% url 'article:list' category.id %}" target="_blank">{{ category.name }}<span
+            class="nums-prompt nums-prompt-topic"></span></a></li>
+    {% endfor %}
+{#    <li class="nav-news"><a href="{% url 'active:list' %}" target="_blank">专题<span class="nums-prompt nums-prompt-topic"></span></a></li>#}
+</ul>
